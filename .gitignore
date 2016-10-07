@@ -1,0 +1,33 @@
+*.sublime-project
+*.sublime-workspace
+
+# by @SahinU88: Vagrant, Cheffile & other stuff for Local Setup
+Cheffile
+Cheffile.lock
+cookbooks/
+Vagrantfile
+.vagrant/
+.ruby-version
+# end by @SahinU88
+
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+/public/assets/*
+--config/initializers/secret_token.rb
+.env
