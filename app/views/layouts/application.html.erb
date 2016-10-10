@@ -1,14 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>InfoFreizeitticketRails</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Auf FreizeitTicket.info findet ihr alle Webcams und Neuschneeinfos der Skigebiete, die Mitglieder beim Freizeitticket sind, auf nur einen Blick.">
+	<meta name="author" content="Clemens Brunner">
+	<meta name="keywords" content="innsbruck, Snowboard, Lawinenbericht, Ski, Berg, Sonne, Schnee, Wetter, Webcam, Livecam, Aktuelle, Fotos, Freizeitticket, Überblick, Info, Wetter, Schneelage, Schnee, Wetterbericht, Stubaier, Gletscher, Nordkette, Patscherkofel, Axamer Lizum, Schlick 2000, Kühtai, Glungezer, Muttereralm Bergbahnen, Obergurgl, Neustift, 11er Lifte, St. Anton, Lech, Zürs, Bergeralm, Bergbahnen, Rosshütte, Seefeld, Galtür, Kellerjoch, Silvretta, Glungezer Bahnen, HochkössenMieders, Kappl, Freizeit, Ticket, Stubaier Gletscher, Skigebiet, alle Webcams, lagebericht, lawinen, Innsbruck, Neuschnee, Powder, fresh, Tirol, Österreich, Austria, Tyrol, Cam, Twitter, Facebook, powder, alert">
+	<meta name="robots" content="index, follow">
+	<meta http-equiv="content-language" content="de">
+	<meta property="og:title" content="FreizeitTicket.info" />
+	<meta property="og:type" content="sport" />
+	<meta property="og:url" content="http://www.freizeitticket.info" />
+	<meta property="og:locale" content="de_DE" />
+	<meta property="og:image" content="<%= asset_path('logo/logo_256.jpg')%>" />
+	<meta property="og:description" content="FreizeitTicket.info zeigt euch die Webcams aller Freizeitticket-Skigebiete auf nur einen Blick. Die Zeiten vom Durchklicken der einzelnen Homepages sind vorbei, hier seht ihr sofort wo die Bedingungen am besten sind – inklusive aktueller Neuschnee- und Lawinenberichte.<br> Die jeweilige Lawinenwarnstufe scheint schon auf der Überblicksseite direkt beim Skigebiet auf. Daneben findet ihr das Schneeflocken-Icon. Das zeigt an, wo wieviel Neuschnee gefallen ist und wann der letzte Schneefall war.<br> Diese Info holen wir top-aktuell direkt aus den Social Media Kanälen der Skigebiete oder deren Homepage. Das Skigebiet mit dem meisten Neuschnee listet FreizeitTicket.info ganz zu Beginn - damit ihr die ersten im perfekten Powder seid!" />
+
+	<link rel="shortcut icon" href="<%= asset_path('logo/logo.ico')%>">
+
+	<title>FreizeitTicket.info - Alle Webcams im Überblick</title>
+
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">
+					<img alt="Logo" src="<%= asset_path('logo/logo_small.png')%>" class="header-logo" >
+					FreizeitTicket.info
+				</a>
 
-<%= yield %>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					 <span class="sr-only">Toggle navigation</span>
+                	<span class="icon-bar"></span>  
+                	<span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+				</button>
+			</div>
 
+			<div class="navbar-header pull-right hidden-xs">
+				<a class="navbar-brand pull-right" target="_blank"  href="https://www.facebook.com/freizeitticker.info/"><img class="header-icon hidden-xs" alt="facebook" src="<%= asset_path('header/facebook.png')%>"> </a>
+	            <a class="navbar-brand pull-right" target="_blank"  href="https://twitter.com/freizeitticket"><img class="header-icon hidden-xs" alt="twitter" src="<%= asset_path('header/twitter.png')%>"> </a>
+				<a class="navbar-brand pull-right" target="_blank"  href="https://plus.google.com/+FreizeitticketInfo1/"><img class="header-icon hidden-xs" alt="googleplus" src="<%= asset_path('header/googleplus.svg')%>"> </a>
+				<a class="navbar-brand pull-right" href="mailto:info@freizeitticket.info"><img class="header-icon hidden-xs" alt="mail" src="<%= asset_path('header/mail.svg')%>"> </a>
+			</div>
+			
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="<%= action_name == 'index' ? 'active' : '' %>">
+						<a href="/">Home</a>
+					</li>
+					<li class="<%= action_name == 'about' ? 'active' : '' %>">
+						<a href="/pages/about">About</a>
+					</li>
+					<li class="<%= action_name == 'impressum' ? 'active' : '' %>">
+						<a href="/pages/impressum">Impressum</a>
+					</li>
+					<li class="visible-xs">
+                        <a target="_blank" href="https://www.facebook.com/freizeitticker.info/">Zur Facebook Seite</a>
+                        <a target="_blank" href="https://twitter.com/freizeitticket">Zur Twitter Seite</a>
+                        <a target="_blank" href="https://plus.google.com/+FreizeitticketInfo1/">Zur Google+ Seite</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class='container'>
+		<%= yield %>
+
+	    <footer>
+	        <p>&copy; FreizeitTicket.info 2016</p>
+	    </footer>
+	</div>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

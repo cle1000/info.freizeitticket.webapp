@@ -1,0 +1,2 @@
+module SkiresortHelper
+end
