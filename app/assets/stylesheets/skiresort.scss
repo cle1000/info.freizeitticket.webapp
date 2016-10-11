@@ -13,9 +13,8 @@
 
 	.overlay{
 		position:absolute;
-		height:27%;
+		height:55px;
 		bottom: 0px;
-		min-height: 45px;
 		background-color: rgba(0, 0, 0, 0.8);
 		width: 100%;
 		color: white;
@@ -35,6 +34,23 @@
 
 	.webcam_name{
 		font-size: 15px;	
+	}
+
+	.overlay-icon{
+		height: 65%;
+		position:relative;
+	    top: 0px;
+	    right: 0px;
+	    padding: 5px 5px 5px 5px;
+		.icon {
+			height: 100%;
+			text-align: center;
+		}
+		.text{
+			text-align: center;
+			font-size: 12px;
+		}
+
 	}
 
 }

@@ -33,6 +33,8 @@ gem 'autoprefixer-rails'
 
 gem 'react-rails'
 
+gem 'font-awesome-sass', '~> 4.6.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

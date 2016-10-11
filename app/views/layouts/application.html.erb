@@ -21,6 +21,7 @@
 	<title>FreizeitTicket.info - Alle Webcams im Überblick</title>
 
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
@@ -71,9 +72,9 @@
 		<%= yield %>
 
 	    <footer>
-	        <p>&copy; FreizeitTicket.info 2016</p>
+	        <p>&copy; FreizeitTicket.info <%= Time.now.year  %> </p>
 	    </footer>
 	</div>
-  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag params[:controller] %>
 </body>
 </html>

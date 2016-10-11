@@ -9,7 +9,7 @@ class Skiresort extends React.Component{
   	}
 
   	componentDidMount() {
-	    this.interval = setInterval(() => this.change_webcam(), 1000);
+	    //this.interval = setInterval(() => this.change_webcam(), 1000);
 	}
 
   	componentWillUnmount() {
@@ -17,11 +17,16 @@ class Skiresort extends React.Component{
   	}
 
 	render(){
-		var webcam = this.props.webcams[this.state.active_webcam]
+		let webcam = this.props.webcams[this.state.active_webcam]
 		return (
 			<div className="skiresort_container">
 				<img className="webcam_image" src={webcam.img_thumb}/>
 				<div className="overlay">
+
+					<SnowIcon text='POW' type='twitter' src='http://www.google.at'/>
+					<TempIcon temp='-10' />
+					<AvalancheIcon avalancheLevel='1' src='http://www.google.at'/>
+
 					<div className="description">
 						<div className="skiresort_name">{this.props.name}</div>
 						<div className="webcam_name">{webcam.name} {webcam.height}m </div>
