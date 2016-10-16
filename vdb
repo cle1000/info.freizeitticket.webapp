@@ -1,4 +1,0 @@
-for i in {1..100}
-do
-	curl 'http://www.gmx.at/magazine/ajax/csrf' -H 'Pragma: no-cache' -H 'Accept-Encoding: gzip, deflate, sdch' -H 'Accept-Language: en-US,en;q=0.8,de;q=0.6' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36' -H 'Accept: */*' -H 'Referer: http://www.gmx.at/magazine/politik/wahlen/bundespraesidentenwahl-oesterreich/bundespraesidentenwahl-norbert-hofer-alexander-van-bellen-umfragen-vorn-31906120' -H 'Cookie: ui_cid=XG2VepWsiFG9pIGw80J1; POPUPCHECK=1476686070442; NGUserID=ac13e4b0-10080-1475685657-14; pageInactive={"timestamp":1476599745599}' -H 'Connection: keep-alive' -H 'Cache-Control: no-cache' --compressed
-done
