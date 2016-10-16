@@ -45,9 +45,10 @@ class DetailView extends React.Component {
 					</div>
 					{webcams}
 					<BackToTop/>
-					<div className="col-xs-12">
-						<a className="btn btn-default" href="/" role="button">&laquo; Zurück</a> 
-						<a className="btn btn-primary" href={this.state.data.homepage} target="_blank" role="button">Zum Skigebiet</a>
+					<div className="col-xs-12 padding-full">
+						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
+						 &nbsp;
+						<a className="btn btn-ft" href={this.state.data.homepage} target="_blank" role="button">Zum Skigebiet</a>
 					</div>
 				</div>
 			) :  <Loader/> 

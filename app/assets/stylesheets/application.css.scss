@@ -77,3 +77,26 @@ body {
 .loader-img{
   height: 50px;
 }
+
+.padding-full{
+  padding-top:15px;
+  padding-bottom:15px;
+}
+
+.padding-right{
+  padding-right: 15px;
+}
+
+.btn-ft,
+.btn-ft:active,
+.btn-ft:visited,
+.btn-ft:focus {
+    color: #fff;
+    background-color: #717769;
+    border-color: #ffffff;
+}
+.btn-ft:hover {
+   background-color: #717769;
+   opacity: 0.9;
+   filter: alpha(opacity=90); /* For IE8 and earlier */
+}
