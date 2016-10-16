@@ -39,7 +39,10 @@ gem 'nokogiri'
 
 gem 'twitter'
 
-gem 'pg'
+group :production do
+  gem 'unicorn'
+  gem 'pg'
+end
 
 gem 'open_uri_redirections'
 
