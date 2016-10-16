@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 2016-10-12 09:55:45
+  snow_height: MyString
+  int: MyString
+  powder_alert: MyString
+  boolean: MyString
+  type: 
+  link: MyString
+  html: MyString
+  push: false
+
+two:
+  time: 2016-10-12 09:55:45
+  snow_height: MyString
+  int: MyString
+  powder_alert: MyString
+  boolean: MyString
+  type: 
+  link: MyString
+  html: MyString
+  push: false

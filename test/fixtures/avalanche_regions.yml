@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  region: 1
+  am: false
+  pm: false
+  danger_rate: 1
+
+two:
+  region: 1
+  am: false
+  pm: false
+  danger_rate: 1

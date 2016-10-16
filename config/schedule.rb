@@ -16,8 +16,25 @@
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
+
+#webcams
 every 10.minutes do
-	runner "Skiresort.load_all"
+	runner "Skiresort.load_webcams"
+end
+
+#webcams
+every 1.day, :at => '8:31 am' do
+	runner "Avalanche.load"
+end
+
+#snow_info
+every 30.minutes do
+	runner "Skiresort.scan_all"
+end
+
+#webcams
+every 3.hours do
+	runner "Skiresort.load_weathers"
 end
 
 # Learn more: http://github.com/javan/whenever

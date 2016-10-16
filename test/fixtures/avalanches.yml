@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: 
+  author: MyString
+  comment: MyText
+  highlight: MyText
+  synopsis_comment: MyText
+  snowpack_structure_comment: MyText
+  travel_advisary_comment: MyText
+
+two:
+  time: 
+  author: MyString
+  comment: MyText
+  highlight: MyText
+  synopsis_comment: MyText
+  snowpack_structure_comment: MyText
+  travel_advisary_comment: MyText

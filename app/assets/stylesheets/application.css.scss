@@ -41,7 +41,6 @@ footer {
 
 .padding{
 	padding-bottom: 15px; 
-	padding-top: 15px;
 }
 
 .header-logo{
@@ -55,4 +54,22 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+
+.back-to-top {
+  font-size: 30px;
+  text-align: center;
+  position: fixed;
+  z-index:1000;
+  width: 50px;
+  height: 50px;
+  right:15px;
+  bottom:15px;
+  cursor:pointer;
+  color: white;
+  background-color:#222222; 
+}
+
+.loader-center{
+  text-align: center;
 }

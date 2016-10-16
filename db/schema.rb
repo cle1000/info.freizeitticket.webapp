@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008091239) do
+ActiveRecord::Schema.define(version: 20161012075545) do
+
+  create_table "avalanche_regions", force: :cascade do |t|
+    t.integer  "avalanche_id"
+    t.integer  "region"
+    t.boolean  "am"
+    t.boolean  "over_1800"
+    t.integer  "danger_rate"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "avalanches", force: :cascade do |t|
+    t.datetime "time"
+    t.string   "author"
+    t.text     "comment"
+    t.text     "highlight"
+    t.text     "synopsis_comment"
+    t.text     "snowpack_structure_comment"
+    t.text     "travel_advisary_comment"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "skiresorts", force: :cascade do |t|
     t.string   "name"
@@ -24,6 +46,20 @@ ActiveRecord::Schema.define(version: 20161008091239) do
     t.string   "weather"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.string   "temperatur"
+  end
+
+  create_table "snow_reports", force: :cascade do |t|
+    t.integer  "skiresort_id"
+    t.datetime "time"
+    t.integer  "snow_height"
+    t.boolean  "powder_alert"
+    t.string   "source"
+    t.string   "link"
+    t.string   "html"
+    t.boolean  "push"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "webcams", force: :cascade do |t|

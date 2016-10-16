@@ -5,30 +5,40 @@ class Skiresort extends React.Component{
 	}
 
 	change_webcam() {
-   		this.setState({active_webcam: (this.state.active_webcam + 1) % this.props.webcams.length});
+   		this.setState({active_webcam: (this.state.active_webcam + 1) % this.props.resort.webcams.length});
   	}
 
   	componentDidMount() {
-	    //this.interval = setInterval(() => this.change_webcam(), 1000);
+       	window.addEventListener('scroll', this.handleScroll.bind(this));
+       	setTimeout( (() => this.handleScroll()).bind(this), 500);
 	}
 
   	componentWillUnmount() {
-    	clearInterval(this.interval);
+    	window.removeEventListener('scroll', this.handleScroll);
+  	}
+
+  	handleScroll(){
+  		clearInterval(this.interval);
+
+		let t = this._container.getBoundingClientRect().top
+		let b =  this._container.getBoundingClientRect().bottom
+		if (b > 0 && t < window.innerHeight){
+			this.interval = setInterval(() => this.change_webcam(), 3000);
+		}
   	}
 
 	render(){
-		let webcam = this.props.webcams[this.state.active_webcam]
+		let resort = this.props.resort
+		let webcam = resort.webcams[this.state.active_webcam]
 		return (
-			<div className="skiresort_container">
-				<img className="webcam_image" src={webcam.img_thumb}/>
+			<div ref={(c) => this._container = c} className="skiresort_container">
+				<img onClick={()=> window.location = '/area/details?id='+resort.id} className="webcam_image pointer" src={webcam.img_thumb}/>
 				<div className="overlay">
-
-					<SnowIcon text='POW' type='twitter' src='http://www.google.at'/>
-					<TempIcon temp='-10' />
-					<AvalancheIcon avalancheLevel='1' src='http://www.google.at'/>
-
+					{resort.snow && <SnowIcon text={resort.snow.text} type={resort.snow.source} src={resort.snow.link}/>}
+					{resort.temperatur && <TempIcon temp={resort.temperatur} />}
+					{resort.avalanche_level && <AvalancheIcon avalancheLevel={resort.avalanche_level}/>}
 					<div className="description">
-						<div className="skiresort_name">{this.props.name}</div>
+						<div className="skiresort_name">{resort.name}</div>
 						<div className="webcam_name">{webcam.name} {webcam.height}m </div>
 					</div>
 				</div>

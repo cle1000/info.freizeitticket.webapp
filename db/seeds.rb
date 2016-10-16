@@ -24,9 +24,9 @@ stubaier = Skiresort.create({
 	avalanche_region: 8,
 	twitter: 'stubaigletscher',
     facebook: 'schifahren.stubaiergletscher',
-    snow_page: 'http://www.stubaier-gletscher.com',
+    snow_page: 'https://www.stubaier-gletscher.com',
     bergfex: 'stubaier-gletscher',
-    homepage: 'http://www.stubaier-gletscher.com',
+    homepage: 'https://www.stubaier-gletscher.com',
     weather: 'stubaier-gletscher',
 })
 
@@ -40,7 +40,7 @@ patscherkofel = Skiresort.create({
 })
 
 axamerlizum = Skiresort.create({
-	name: 'Patscherkofel',
+	name: 'Axamer Lizum',
 	avalanche_region: 5,
     facebook: 'axamerlizum',
     bergfex: 'axamer-lizum',
@@ -77,7 +77,7 @@ glungezer = Skiresort.create({
 	avalanche_region: 6, 
 	twitter: 'glungezer',
 	facebook: 'glungezer',
-	bergfex: 'kuehtai',
+	bergfex: 'glungezer',
 	homepage: 'http://www.glungezerbahn.at/',
 	weather: 'glungezer'
 })
@@ -115,7 +115,7 @@ kappl = Skiresort.create({
 	avalanche_region: 1, 
 	twitter: 'kappl_insider',
 	facebook: 'kappl.tirol',
-	bergfex: 'bergeralm',
+	bergfex: 'kappl',
 	homepage: 'http://www.kappl.com',
 	weather: 'bergbahnen-kappl',
 	snow_page: 'http://www.kappl.com/en/info/snowreport'
@@ -162,7 +162,6 @@ seefeld = Skiresort.create({
 	facebook: 'rosshuette',
 	bergfex: 'seefeld-rosshuette',
 	homepage: 'http://www.rosshuette.at/',
-	snow_page: 'http://www.nordkette.com/die-bahn/lifte-in-betrieb.html',
 	weather: 'rosshuette'
 })
 
@@ -235,7 +234,6 @@ gries = Skiresort.create({
 leutasch = Skiresort.create({
 	name: 'Leutasch', 
 	avalanche_region: 2, 
-	facebook: 'hochmoos.tirol',
 	bergfex: 'hochmoos-kreithlift-leutasch',
 	homepage: 'http://www.hochmoos-tirol.com/',
 	weather: 'leutasch-kreithlifte'

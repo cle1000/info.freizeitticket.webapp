@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  get 'area/details'
+
   get 'pages/about'
 
   get 'pages/impressum'
 
   get 'skiresort/data'
+
+  get 'skiresort/detail'
+
 
   get 'home/index'
 
