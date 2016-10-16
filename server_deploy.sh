@@ -1,0 +1,1 @@
+git pull && RAILS_ENV=production rake assets:precompile && service unicorn restart
