@@ -24,6 +24,7 @@ production:
   adapter: postgresql
   database: freizeitticket_production
   username: rails
+  host: localhost
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
   encoding: utf8
   pool: 5
