@@ -43,6 +43,7 @@ gem 'twitter'
 
 group :production do
   gem 'unicorn'
+  gem 'unicorn-worker-killer'
   gem 'pg'
 end
 
