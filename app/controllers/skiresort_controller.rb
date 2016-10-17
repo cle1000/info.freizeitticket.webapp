@@ -8,5 +8,14 @@ class SkiresortController < ApplicationController
   
   def detail
   	@resort = Skiresort.find(params[:id])
+  	@snowreports = Skiresort.find(params[:id]).snow_reports.order(:time).map do |sr|
+  		OpenStruct.new(
+  			'snow_text' => sr.text,
+    		'source_name' => sr.source,
+    		'link_text' => sr.get_link_text,
+    		'source' => sr.link,
+    		'date' => time_ago_in_words(sr.time)
+    	)
+  	end
   end
 end

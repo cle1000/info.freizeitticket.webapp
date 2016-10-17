@@ -32,7 +32,7 @@ class Skiresort extends React.Component{
 		let webcam = resort.webcams[this.state.active_webcam]
 		return (
 			<div ref={(c) => this._container = c} className="skiresort_container">
-				<img onClick={()=> window.location = '/area/details?id='+resort.id} className="webcam_image pointer" src={webcam.img_thumb}/>
+				<img onClick={()=> window.location = '/area/details?id='+resort.id} className="shadow webcam_image pointer" src={webcam.img_thumb}/>
 				<div className="overlay">
 					{resort.snow && <SnowIcon text={resort.snow.text} type={resort.snow.source} src={resort.snow.link}/>}
 					{resort.temperatur && <TempIcon temp={resort.temperatur} />}

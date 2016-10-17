@@ -30,9 +30,9 @@ class DetailView extends React.Component {
 		if (this.state.data){
 			webcams = this.state.data.webcams.map(function(webcam, i) {
 				return (
-					<div key={i} onClick={() => window.open(webcam.src)} className={(webcam.wide ? 'col-md-12' : 'col-md-6')}>
+					<div key={i}  className={(webcam.wide ? 'col-md-12' : 'col-md-6')}>
 						<h5>{webcam.name + " " + webcam.height}</h5>
-						<img className="pointer webcam-detail" src={webcam.img}/>
+						<img onClick={() => window.open(webcam.src)} className="shadow pointer webcam-detail" src={webcam.img}/>
 					</div>
 				)
 			}) 
@@ -44,12 +44,16 @@ class DetailView extends React.Component {
 						<h1> {this.state.data.name} </h1>
 					</div>
 					{webcams}
-					<BackToTop/>
+					
+					<div className="col-xs-12">
+						<SnowTimeline snowreports={this.state.data.snowreports}/>
+					</div>
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
 						 &nbsp;
-						<a className="btn btn-ft" href={this.state.data.homepage} target="_blank" role="button">Zum Skigebiet</a>
+						<a className="btn btn-ft" href={this.state.data.homepage} target="_blank">Zum Skigebiet</a>
 					</div>
+					<BackToTop/>
 				</div>
 			) :  <Loader/> 
 	}
