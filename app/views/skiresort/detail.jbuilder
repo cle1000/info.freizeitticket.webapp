@@ -15,5 +15,6 @@ if !@snowreports.empty?
         json.link_text sr.link_text
         json.source sr.source
         json.date sr.date
+        json.content_text sr.content_text
     end
 end
