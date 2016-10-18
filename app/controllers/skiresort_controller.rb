@@ -15,7 +15,7 @@ class SkiresortController < ApplicationController
     		'link_text' => sr.get_link_text,
         'content_text' => sr.get_content_text,
     		'source' => sr.link,
-    		'date' => sr.time#time_ago_in_words(sr.time)
+    		'date' => time_ago_in_words(sr.time)
     	)
   	end
   end
