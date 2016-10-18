@@ -22,7 +22,6 @@ body {
 a {
   color: #acb7c0;
   text-decoration: none;
-  font-family: "Open Sans", sans-serif;
 }
 
 img {
@@ -129,15 +128,22 @@ Main components
   margin-left: -12px;
   margin-top: -12px;
 }
-.cd-timeline-img.cd-picture {
-  background: #75ce66;
+.cd-timeline-img.cd-facebook {
+  background: #3b5998;
 }
-.cd-timeline-img.cd-movie {
+
+.cd-timeline-img.cd-homepage {
+  background: #717769;
+}
+
+.cd-timeline-img.cd-twitter {
+  background: #28a9e2;
+}
+
+.cd-timeline-img.cd-bergfex {
   background: #c03b44;
 }
-.cd-timeline-img.cd-location {
-  background: #f0ca45;
-}
+
 @media only screen and (min-width: 1170px) {
   .cd-timeline-img {
     width: 60px;
@@ -157,6 +163,11 @@ Main components
     -moz-animation: cd-bounce-1 0.6s;
     animation: cd-bounce-1 0.6s;
   }
+}
+
+cd-timeline-h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 @-webkit-keyframes cd-bounce-1 {
@@ -231,15 +242,14 @@ Main components
 }
 .cd-timeline-content h2 {
   color: #303e49;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
-.cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-  font-size: 16px;
-}
+
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
 }
 .cd-timeline-content p {
-  margin: 1em 0;
   line-height: 1.6;
 }
 .cd-timeline-content .cd-read-more {
@@ -267,17 +277,7 @@ Main components
   border: 7px solid transparent;
   border-right: 7px solid white;
 }
-@media only screen and (min-width: 768px) {
-  .cd-timeline-content h2 {
-    font-size: 20px;
-  }
-  .cd-timeline-content p {
-    font-size: 16px;
-  }
-  .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-    font-size: 14px;
-  }
-}
+
 @media only screen and (min-width: 1170px) {
   .cd-timeline-content {
     margin-left: 0;
@@ -298,7 +298,6 @@ Main components
     width: 100%;
     left: 122%;
     top: 6px;
-    font-size: 16px;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content {
     float: right;
