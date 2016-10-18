@@ -9,7 +9,7 @@ getUrlVars = function() {
 class DetailView extends React.Component {
 	constructor(props) {
         super(props)
-        this.state = { data: undefined}
+        this.state = { data: undefined, active_tab: 'webcam'}
     }
 	componentDidMount(){
 		$.ajax({
@@ -31,7 +31,7 @@ class DetailView extends React.Component {
 			webcams = this.state.data.webcams.map(function(webcam, i) {
 				return (
 					<div key={i}  className={(webcam.wide ? 'col-md-12' : 'col-md-6')}>
-						<h5>{webcam.name + " " + webcam.height}</h5>
+						<h4>{webcam.name + " " + webcam.height}</h4>
 						<img onClick={() => window.open(webcam.src)} className="shadow pointer webcam-detail" src={webcam.img}/>
 					</div>
 				)
@@ -43,13 +43,19 @@ class DetailView extends React.Component {
 					<div className="col-xs-12">
 						<h1> {this.state.data.name} </h1>
 					</div>
-					{webcams}
-					
-					{this.state.data.snowreports && (
+					<ul className="nav nav-tabs">
+					  <li role="presentation" className={this.state.active_tab == 'webcam' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'webcam'})}>Webcams</a></li>
+					  <li role="presentation" className={this.state.active_tab == 'snowreport' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'snowreport'})}>Schneeberichte</a></li>
+					</ul>
+
+					{this.state.active_tab == 'webcam' && webcams}
+
+					{this.state.active_tab == 'snowreport' && this.state.data.snowreports && (
 						<div className="col-xs-12">
 							<SnowTimeline snowreports={this.state.data.snowreports}/>
 						</div>
 					)}
+
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
 						 &nbsp;

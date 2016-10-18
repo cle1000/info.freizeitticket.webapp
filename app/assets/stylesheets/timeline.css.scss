@@ -19,10 +19,6 @@ body {
   background-color: #e9f0f5;
 }
 
-a {
-  color: #acb7c0;
-  text-decoration: none;
-}
 
 img {
   max-width: 100%;
@@ -230,7 +226,7 @@ cd-timeline-h2{
 .cd-timeline-content {
   position: relative;
   margin-left: 60px;
-  background: white;
+  background: #f1f1f1;
   border-radius: 0.25em;
   padding: 1em;
   box-shadow: 0 3px 0 #d7e4ed;
@@ -275,7 +271,7 @@ cd-timeline-h2{
   height: 0;
   width: 0;
   border: 7px solid transparent;
-  border-right: 7px solid white;
+  border-right: 7px solid #f1f1f1;
 }
 
 @media only screen and (min-width: 1170px) {

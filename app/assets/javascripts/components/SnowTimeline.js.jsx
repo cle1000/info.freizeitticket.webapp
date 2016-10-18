@@ -4,7 +4,6 @@ class SnowTimeline extends React.Component{
 
       return (
       		<div>
-				<h2 className="padding"> Schneeberichte: </h2>		      
 			    <section id="cd-timeline" className="cd-container">
 		          {elements}
 		        </section> 

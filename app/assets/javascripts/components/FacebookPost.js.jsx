@@ -5,6 +5,5 @@ class FacebookPost extends React.Component {
 
 	render(){
 		return <div data-width="1000" className="fb-post" href={this.props.url}/>
-
 	}
 }

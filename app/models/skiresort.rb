@@ -90,7 +90,7 @@ class Skiresort < ActiveRecord::Base
 			json["data"].each do |post|
 				snowInfo = getSnowInfo(post["message"]) 
 				if snowInfo
-					t = Time.parse(post["created_time"]) + 2.hours
+					t = Time.parse(post["created_time"])
 					if !SnowReport.all.exists?(time: t, source:"facebook", skiresort: self)
 						sr = SnowReport.new(snowInfo.merge(skiresort: self, time: Time.parse(post["created_time"]) + 2.hours,source:'facebook',  link: "https://www.facebook.com/#{facebook}/posts/#{post['id'].split('_')[1]}"))
 						sr.save!
@@ -150,7 +150,7 @@ class Skiresort < ActiveRecord::Base
 				end
 			end
 		rescue => e
-			Rails.logger.error { "Encountered an error when scaning facebook for #{self.name}:#{e.message} #{e.backtrace.join("\n")}" }
+			Rails.logger.error { "Encountered an error when scaning bergfex for #{self.name}:#{e.message} #{e.backtrace.join("\n")}" }
 		end
 
 	end
