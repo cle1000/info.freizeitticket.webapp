@@ -142,7 +142,6 @@ class Skiresort < ActiveRecord::Base
 					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 					puts time
 				end
-				time = time.utc
 				if !SnowReport.all.exists?(time: time, source:"bergfex", skiresort: self)
 					sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
 					self.snow_reports << sr
