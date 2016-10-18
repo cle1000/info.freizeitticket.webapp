@@ -1,5 +1,6 @@
 json.name @resort.name
 json.homepage @resort.homepage
+json.weather @resort.weather
 
 json.webcams @resort.webcams.order(:height) do |webcam|
     json.name webcam.name
@@ -8,6 +9,7 @@ json.webcams @resort.webcams.order(:height) do |webcam|
     json.img webcam.img
     json.wide webcam.wide
 end
+
 if !@snowreports.empty?
     json.snowreports @snowreports do |sr|
         json.snow_text sr.snow_text

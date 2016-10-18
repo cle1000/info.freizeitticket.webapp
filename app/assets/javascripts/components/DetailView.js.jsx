@@ -47,6 +47,7 @@ class DetailView extends React.Component {
 					  <li role="presentation" className={this.state.active_tab == 'webcam' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'webcam'})}>Webcams</a></li>
 					  <li role="presentation" className={this.state.active_tab == 'snowreport' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'snowreport'})}>Schneeberichte</a></li>
 					  <li role="presentation" className={this.state.active_tab == 'snowstats' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'snowstats'})}>Statistik</a></li>	
+					  <li role="presentation" className={this.state.active_tab == 'weather' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'weather'})}>Wetter</a></li>	
 					</ul>
 
 					{this.state.active_tab == 'webcam' && webcams}
@@ -61,6 +62,10 @@ class DetailView extends React.Component {
 
 					{this.state.active_tab == 'snowstats' && (
 						<SnowStatistic data={this.state.data.snowstats}/>
+					)}
+
+					{this.state.active_tab == 'weather' && (
+						<SnowWeather src={this.state.data.weather}/>
 					)}
 
 					<div className="col-xs-12 padding-full">
