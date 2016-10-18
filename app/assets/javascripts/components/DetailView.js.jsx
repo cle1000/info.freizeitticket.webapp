@@ -45,9 +45,11 @@ class DetailView extends React.Component {
 					</div>
 					{webcams}
 					
-					<div className="col-xs-12">
-						<SnowTimeline snowreports={this.state.data.snowreports}/>
-					</div>
+					{this.state.data.snowreports && (
+						<div className="col-xs-12">
+							<SnowTimeline snowreports={this.state.data.snowreports}/>
+						</div>
+					)}
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
 						 &nbsp;

@@ -37,14 +37,14 @@ class SnowTimelineElement extends React.Component{
     render () {
 	    return (
 	      <div ref={b => this._block = b} className="cd-timeline-block">  
-          <div className={"cd-timeline-img cd-picture " + (!this.state.show ? 'is-hidden' : 'bounce-in')}>
+          <div className={"cd-timeline-img cd-"+ this.props.source_name + " " + (!this.state.show ? 'is-hidden' : 'bounce-in')}>
             <img src={"/images/skiresort_widget/"+this.props.source_name.toLowerCase()+".png"}/>
           </div> 
 
           <div className={"cd-timeline-content " + (!this.state.show ? 'is-hidden' : 'bounce-in')}>
             <h2>{this.props.snow_text}</h2>
             <p>gefunden auf {this.props.source_name} </p>
-            <span className="cd-date">{this.props.date}</span>
+            <span className="cd-date"><i className="fa fa-clock-o"></i> {this.props.date}</span>
             {this.props.source && <a href={this.props.source} target="_blank" className="cd-read-more">{this.props.link_text}</a>}
           </div> 
         </div>
