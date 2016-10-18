@@ -92,7 +92,7 @@ class Skiresort < ActiveRecord::Base
 				if snowInfo
 					t = Time.parse(post["created_time"])
 					if !SnowReport.all.exists?(time: t, source:"facebook", skiresort: self)
-						sr = SnowReport.new(snowInfo.merge(skiresort: self, time: Time.parse(post["created_time"]) + 2.hours,source:'facebook',  link: "https://www.facebook.com/#{facebook}/posts/#{post['id'].split('_')[1]}"))
+						sr = SnowReport.new(snowInfo.merge(skiresort: self, time: Time.parse(post["created_time"]),source:'facebook',  link: "https://www.facebook.com/#{facebook}/posts/#{post['id'].split('_')[1]}"))
 						sr.save!
 					end
 				end
