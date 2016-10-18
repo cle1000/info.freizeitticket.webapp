@@ -21,8 +21,14 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+.shadow{
+  box-shadow: 5px 5px 5px #888888;
+}
+
+
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+     background-color: #f1f1f1;
 }
 
 .portfolio-item {

@@ -76,7 +76,7 @@ class Skiresort < ActiveRecord::Base
 				last.snow_height = best
 				last.save!
 			elsif last.nil? && best > 0 #there is no entry but on the homepage there is -> make a new
-				sr = SnowReport.new(time: Time.now, source: 'homepage', skiresort:self, snow_height: best)
+				sr = SnowReport.new(time: Time.now, link: snow_page, source: 'homepage', skiresort:self, snow_height: best)
 				sr.save!
 			end
 		rescue => e

@@ -8,7 +8,7 @@ class SnowReport < ActiveRecord::Base
 	after_initialize	:set_snow_info
 
 	def set_snow_info
-		if self.time
+		if time
 			if self.time > 12.hours.ago
 				@text = self.powder_alert ? "POW" : "#{self.snow_height} cm"
 				@current_snow_height = 1 if self.powder_alert
@@ -18,6 +18,14 @@ class SnowReport < ActiveRecord::Base
 				@text = time_ago_in_words(self.time)
 			end
 		end
+	end
+
+	def get_link_text
+		link_text = "zum Post" if source == "facebook"
+		link_text = "zum Tweet" if source == "twitter"
+		link_text = "zur Homepage" if source == "homepage"
+		link_text = "zum Bergfex Seite" if source == "bergfex"
+		link_text
 	end
 	
 end
