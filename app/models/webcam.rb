@@ -54,6 +54,5 @@ class Webcam < ActiveRecord::Base
 		end
 		image.resize '365x230!'
 		image.write 'public/images/webcams/thumb/'+ self.id.to_s + '.jpg'
-		image.clear
 	end
 end
