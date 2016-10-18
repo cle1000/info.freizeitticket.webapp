@@ -137,6 +137,7 @@ class Skiresort < ActiveRecord::Base
 				if !heute.nil?
 					puts heute
 					time = Time.parse((heute[0].gsub!('Heute, ', '')) , time)
+					puts time
 				elsif !gestern.nil?
 					time = Time.parse((gestern[0].gsub!('Gestern, ', '') ), time - 24.hours)
 				elsif !date.nil?
