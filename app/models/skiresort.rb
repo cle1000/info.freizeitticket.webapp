@@ -135,11 +135,11 @@ class Skiresort < ActiveRecord::Base
 
 				time = Time.now
 				if !heute.nil?
-					time = Time.parse((heute[0].gsub!('Heute, ', '')) + ' UTC', time)
+					time = Time.parse((heute[0].gsub!('Heute, ', '')) , time)
 				elsif !gestern.nil?
-					time = Time.parse((gestern[0].gsub!('Gestern, ', '') + ' UTC'), time - 24.hours)
+					time = Time.parse((gestern[0].gsub!('Gestern, ', '') ), time - 24.hours)
 				elsif !date.nil?
-					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) + ' UTC')	
+					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 					puts time
 				end
 				time = time.utc
