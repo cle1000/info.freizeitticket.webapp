@@ -50,11 +50,13 @@ class DetailView extends React.Component {
 
 					{this.state.active_tab == 'webcam' && webcams}
 
-					{this.state.active_tab == 'snowreport' && this.state.data.snowreports && (
+					{this.state.active_tab == 'snowreport' && (this.state.data.snowreports ? (
 						<div className="col-xs-12">
 							<SnowTimeline snowreports={this.state.data.snowreports}/>
 						</div>
-					)}
+					) : (<div className="col-xs-12"> Leider haben wir keine Neuschneeberichte gefunden ...</div>) 
+					)
+					}
 
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
