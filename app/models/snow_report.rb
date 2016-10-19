@@ -24,7 +24,7 @@ class SnowReport < ActiveRecord::Base
 		link_text = "zum Post" if source == "facebook"
 		link_text = "zum Tweet" if source == "twitter"
 		link_text = "zur Homepage" if source == "homepage"
-		link_text = "zur Bergfex Seite" if source == "bergfex"
+		link_text = "zu Bergfex" if source == "bergfex"
 		link_text
 	end
 
