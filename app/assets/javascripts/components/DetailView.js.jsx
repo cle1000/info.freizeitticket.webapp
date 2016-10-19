@@ -31,7 +31,7 @@ class DetailView extends React.Component {
 			webcams = this.state.data.webcams.map(function(webcam, i) {
 				return (
 					<div key={i}  className={(webcam.wide ? 'col-md-12' : 'col-md-6')}>
-						<h4>{webcam.name + " " + webcam.height}</h4>
+						<h4>{webcam.name + " " + webcam.height +"m"}</h4>
 						<img onClick={() => window.open(webcam.src)} className="shadow pointer webcam-detail" src={webcam.img}/>
 					</div>
 				)

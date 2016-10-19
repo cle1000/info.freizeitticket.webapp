@@ -3,7 +3,15 @@ function SnowWeather ( { src } ){
     return ( 
     	<div>
 		    <div className='col-xs-12 padding-full'>
-		    	<iframe 
+		    	In Kürze findest du hier den aktuellen Wetterbericht und die Lawinenwarnstufen für das ausgewählte Skigebiet. 
+		    </div>
+		</div>
+    )
+}
+
+
+/*
+<iframe 
 		    		width="250" 
 		    		className="schneehoehen"
 		    		name="sh_frame" 
@@ -13,7 +21,4 @@ function SnowWeather ( { src } ){
 		    		frameBorder="0" 
 		    		height="410">
 		    	</iframe>
-		    </div>
-		</div>
-    )
-}
+		    	*/

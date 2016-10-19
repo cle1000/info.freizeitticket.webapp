@@ -15,16 +15,20 @@ class SnowTimelineElement extends React.Component{
     }
 
     showBlock() {
-      let t = this._block.getBoundingClientRect().top
-      if (t <= window.innerHeight*this.state.offset && !this.state.show ) {
-        this.setState({show: true})
+      if (this._block){
+        let t = this._block.getBoundingClientRect().top
+        if (t <= window.innerHeight*this.state.offset && !this.state.show ) {
+          this.setState({show: true})
+        }
       }
     }
 
     hideBlock() {
-      let t = this._block.getBoundingClientRect().top
-      if ( t > window.innerHeight*this.state.offset ) {
-        this.setState({show:false})
+      if (this._block){
+        let t = this._block.getBoundingClientRect().top
+        if ( t > window.innerHeight*this.state.offset ) {
+          this.setState({show:false})
+        }
       }
     }
 
