@@ -38,21 +38,37 @@ class Webcam < ActiveRecord::Base
 	end
 
 	def load_image
-		image = MiniMagick::Image.open(self.image)
-		image.format 'jpg'
+		begin
+			image = optimize(MiniMagick::Image.open(self.image))
 
-		if self.wide
-			image.resize '2500x700'
-		else
-			image.resize '700x700'
+			image.format 'jpg'
+
+			if self.wide
+				image.resize '2500x700'
+			else
+				image.resize '700x700'
+			end
+			image.write 'public/images/webcams/image/'+ self.id.to_s + '.jpg'
+			
+			if self.wide
+				image.resize '2000x230'
+				image.crop '365x230+0+0'
+			end
+			image.resize '365x230!'
+			image.write 'public/images/webcams/thumb/'+ self.id.to_s + '.jpg'
+		rescue => e
+			Rails.logger.error { "Encountered an error when loading image for #{self.name}:#{e.message} #{e.backtrace.join("\n")}" }
 		end
-		image.write 'public/images/webcams/image/'+ self.id.to_s + '.jpg'
-		
-		if self.wide
-			image.resize '2000x230'
-			image.crop '365x230+0+0'
-		end
-		image.resize '365x230!'
-		image.write 'public/images/webcams/thumb/'+ self.id.to_s + '.jpg'
+	end
+
+	def optimize (img)
+      return img unless img.mime_type.match /image\/jpeg/
+      img.strip
+      img.combine_options do |c|
+          c.quality "80"
+          c.depth "8"
+          c.interlace "plane"
+      end
+      img
 	end
 end
