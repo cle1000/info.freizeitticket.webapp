@@ -27,6 +27,31 @@
   box-shadow: 5px 5px 5px #888888;
 }
 
+.avalanche_img{
+  max-width: 300px;
+  width: 100%;
+}
+
+.danger-rate-container{
+  position: relative;
+}
+
+.rate_low{
+  color: #727869;
+  right: 10vw;
+  position:absolute;
+  bottom: 1vw;
+  font: normal 25vw Sans-Serif;
+}
+
+.rate_height{
+  color: #727869;
+  position: absolute;
+  bottom: 30vw;
+  right: 10vw;
+  position:absolute;
+  font: normal 25vw Sans-Serif;
+}
 
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */

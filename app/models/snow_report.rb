@@ -15,7 +15,7 @@ class SnowReport < ActiveRecord::Base
 				@current_snow_height = self.snow_height if self.snow_height
 			else
 				@current_snow_height = 0
-				@text = time_ago_in_words(self.time)
+				@text = self.time_ago_in_short_words
 			end
 		end
 	end
@@ -35,5 +35,16 @@ class SnowReport < ActiveRecord::Base
 		content_text = "gefunden auf Bergfex" if source == "bergfex"
 		content_text
 	end
+
+	def time_ago_in_short_words
+		text = ""
+		diff = (Time.new - self.time)/3600
+		text = "#{diff.round} h" if (diff < 24)
+		diff = diff/24
+		text = "#{diff.round} Tag" if (diff > 1) && (diff < 2)
+		text = "#{diff.round} Tage" if (diff >= 2)
+		text
+	end
+
 	
 end

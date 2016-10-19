@@ -43,9 +43,9 @@ class SnowTimelineElement extends React.Component{
 
           <div className={"cd-timeline-content " + (!this.state.show ? 'is-hidden' : 'bounce-in')}>
             <h2>{this.props.snow_text}</h2>
-            <p> {this.props.content_text} </p>
+            <p className="hidden-xs"> {this.props.content_text} </p>
             <span className="cd-date"><i className="fa fa-clock-o"></i> {this.props.date}</span>
-            {this.props.source && <a href={this.props.source} target="_blank" className="cd-read-more">{this.props.link_text}</a>}
+            <div className="hidden-xs">{this.props.source && <a href={this.props.source} target="_blank" className="cd-read-more">{this.props.link_text}</a>}</div>
           </div> 
         </div>
 	    )

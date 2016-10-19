@@ -46,27 +46,14 @@ class DetailView extends React.Component {
 					<ul className="nav nav-tabs">
 					  <li role="presentation" className={this.state.active_tab == 'webcam' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'webcam'})}>Webcams</a></li>
 					  <li role="presentation" className={this.state.active_tab == 'snowreport' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'snowreport'})}>Schneeberichte</a></li>
-					  <li role="presentation" className={this.state.active_tab == 'snowstats' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'snowstats'})}>Statistik</a></li>	
 					  <li role="presentation" className={this.state.active_tab == 'weather' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'weather'})}>Wetter</a></li>	
 					</ul>
 
 					{this.state.active_tab == 'webcam' && webcams}
 
-					{this.state.active_tab == 'snowreport' && (this.state.data.snowreports ? (
-						<div className="col-xs-12">
-							<SnowTimeline snowreports={this.state.data.snowreports}/>
-						</div>
-					) : (<div className="col-xs-12"> Leider haben wir keine Neuschneeberichte gefunden ...</div>) 
-					)
-					}
+					{this.state.active_tab == 'snowreport' && <SnowTimeline snowreports={this.state.data.snowreports}/>}
 
-					{this.state.active_tab == 'snowstats' && (
-						<SnowStatistic data={this.state.data.snowstats}/>
-					)}
-
-					{this.state.active_tab == 'weather' && (
-						<SnowWeather src={this.state.data.weather}/>
-					)}
+					{this.state.active_tab == 'weather' && <SnowWeather src={this.state.data.weather}/>}
 
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
