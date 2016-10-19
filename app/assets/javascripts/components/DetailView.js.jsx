@@ -46,14 +46,14 @@ class DetailView extends React.Component {
 					<ul className="nav nav-tabs">
 					  <li role="presentation" className={this.state.active_tab == 'webcam' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'webcam'})}>Webcams</a></li>
 					  <li role="presentation" className={this.state.active_tab == 'snowreport' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'snowreport'})}>Schneeberichte</a></li>
-					  <li role="presentation" className={this.state.active_tab == 'weather' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'weather'})}>Wetter</a></li>	
+					  {this.state.data.weather && <li role="presentation" className={this.state.active_tab == 'weather' ? 'active' : ''}><a className="pointer" onClick={() => this.setState({active_tab :'weather'})}>Wetter</a></li>	}
 					</ul>
 
 					{this.state.active_tab == 'webcam' && webcams}
 
 					{this.state.active_tab == 'snowreport' && <SnowTimeline snowreports={this.state.data.snowreports}/>}
 
-					{this.state.active_tab == 'weather' && <SnowWeather src={this.state.data.weather}/>}
+					{(this.state.active_tab == 'weather' && this.state.data.weather) && <SnowWeather src={this.state.data.weather}/>}
 
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 
