@@ -127,7 +127,7 @@ class Skiresort < ActiveRecord::Base
 			html = ActionController::Base.helpers.strip_tags(html.gsub!(/\s+/, " ").strip)
 			puts html
 			height = /(neu: )([0-9][0-9]*)( )*?(cm)/.match(html)
-			freshinfo = /(Letzter Schneefall Region Heute)/.match(html)
+			freshinfo = true #/(Letzter Schneefall Region Heute)/.match(html)
 			time = Time.now
 
 			if height && freshinfo
