@@ -30,6 +30,7 @@ class MainView extends React.Component {
 		} 
 		return this.state.data ? (
 				<div className="row"> 
+					<InfoBar/>
 					{resorts} 
 					<BackToTop/>
 				</div>
