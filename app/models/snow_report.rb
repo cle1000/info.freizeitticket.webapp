@@ -40,7 +40,7 @@ class SnowReport < ActiveRecord::Base
 		text = ""
 		diff = ((Time.new - self.time)/3600).round
 		text = "#{diff} h" if (diff < 24)
-		diff = (diff/24).round
+		diff = (diff/24.0).round
 		text = "#{diff} Tag" if (diff == 1)
 		text = "#{diff} Tage" if (diff >= 2)
 		text
