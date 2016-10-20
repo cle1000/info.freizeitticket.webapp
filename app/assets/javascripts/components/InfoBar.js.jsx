@@ -3,8 +3,7 @@ function InfoBar ( {} ){
 
     return (
     		<div className="col-xs-12">
-    			<a data-toggle="modal" href="#infoModal"><img alt="Information" className="info-img pull-left" src="/images/info.svg"/></a>
-				<a data-toggle="modal" href="#avalancheModal"><img alt="Lawinen Information" className="info-img pull-left" src="/images/avalancheinfo.png"/></a>
+    			
     			{showAppAdds && (
     				<div className="">
 
@@ -21,3 +20,7 @@ function InfoBar ( {} ){
     	   </div>)
 }
 
+/*
+<a data-toggle="modal" href="#infoModal"><img alt="Information" className="info-img pull-left" src="/images/info.svg"/></a>
+<a data-toggle="modal" href="#avalancheModal"><img alt="Lawinen Information" className="info-img pull-left" src="/images/avalancheinfo.png"/></a>
+*/
