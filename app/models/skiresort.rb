@@ -124,7 +124,7 @@ class Skiresort < ActiveRecord::Base
 			html = open("http://www.bergfex.at/#{bergfex}/schneebericht/").read
 			#index = html.index('Pisten und Lifte')
 			#html = html[0 .. index] if index
-			html = ActionController::Base.helpers.strip_tags(html.gsub!(/\s+/, " ").strip)
+			html = html.gsub!(/\s+/, " ").strip #ActionController::Base.helpers.strip_tags()
 			puts html
 			height = /(neu: )([0-9][0-9]*)( )*?(cm)/.match(html)
 			freshinfo = true #/(Letzter Schneefall Region Heute)/.match(html)
