@@ -38,11 +38,11 @@ class SnowReport < ActiveRecord::Base
 
 	def time_ago_in_short_words
 		text = ""
-		diff = (Time.new - self.time)/3600
-		text = "#{diff.round} h" if (diff < 24)
-		diff = diff/24
-		text = "#{diff.round} Tag" if (diff > 1) && (diff < 2)
-		text = "#{diff.round} Tage" if (diff >= 2)
+		diff = ((Time.new - self.time)/3600).round
+		text = "#{diff} h" if (diff < 24)
+		diff = (diff/24).round
+		text = "#{diff} Tag" if (diff == 1)
+		text = "#{diff} Tage" if (diff >= 2)
 		text
 	end
 
