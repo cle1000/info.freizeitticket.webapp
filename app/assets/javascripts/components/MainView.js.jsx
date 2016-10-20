@@ -20,7 +20,7 @@ class MainView extends React.Component {
 	render(){
 		let resorts = []
 		if (this.state.data) {
-			resorts = this.state.data.map(function(resort) {
+			resorts = this.state.data.resorts.map(function(resort) {
 				return (
 					<div key={resort.id} className="padding col-lg-4 col-md-6 col-sm-6 col-xs-12">
 						<Skiresort resort={resort}/>
@@ -30,7 +30,7 @@ class MainView extends React.Component {
 		} 
 		return this.state.data ? (
 				<div className="row"> 
-					<InfoBar/>
+					<InfoBar avalanche_data={this.state.data.avalanche_data}/>
 					{resorts} 
 					<BackToTop/>
 				</div>
