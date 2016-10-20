@@ -122,11 +122,13 @@ class Skiresort < ActiveRecord::Base
 	def scan_bergfex
 		begin
 			html = open("http://www.bergfex.at/#{bergfex}/schneebericht/").read
-			puts html
-			index = html.index('Pisten und Lifte')
-			html = html[0 .. index] if index
-			html = ActionController::Base.helpers.strip_tags(html.gsub!(/\s+/, " ").strip)
-			puts html
+			#puts html
+			#index = html.index('Pisten und Lifte')
+			#html = html[0 .. index] if index
+			#html = ActionController::Base.helpers.strip_tags(html.gsub!(/\s+/, " ").strip)
+			#puts html.gsub!(/\s+/, " "
+
+			html = html.gsub!(/\s+/, " ".strip
 			height = /(neu: )([0-9][0-9]*)( )*?(cm)/.match(html)
 			freshinfo = /(Letzter Schneefall Region Heute)/.match(html)
 			time = Time.now
