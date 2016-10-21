@@ -6,4 +6,8 @@ module SkiresortHelper
       start = matchdata.end(0)
     end
   end
+
+  def strip_tags(text)
+  	text.gsub(/<[^>]*>/ui,'')
+  end
 end

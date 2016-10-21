@@ -41,7 +41,7 @@ class Skiresort < ActiveRecord::Base
 
 			snowWords.each do |fresh| 
 				/(#{fresh}).*?([0-9][0-9]*)( )*?(cm)/.each_match html do |match|
-					m = ActionController::Base.helpers.strip_tags(match[0])
+					m = strip_tags(match[0])
 					specialChar.each { |sc| m.gsub!(sc, "")}
 					m1 = /(#{fresh})( )*([0-9][0-9]*)( )*?(cm)/.match(m)
 					if not m1.nil?
