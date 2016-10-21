@@ -1,4 +1,5 @@
 include SkiresortHelper
+include Facebook
 
 class Skiresort < ActiveRecord::Base
 
@@ -24,8 +25,6 @@ class Skiresort < ActiveRecord::Base
 		sr = self.snow_reports.order("time").last
 		@snow_report = sr.nil? ? SnowReport.new() : sr
 	end
-
-
 
 	def scan_homepage
 		begin
@@ -160,7 +159,7 @@ class Skiresort < ActiveRecord::Base
 		scan_twitter if self.twitter
 		scan_facebook if self.facebook
 		scan_bergfex if self.bergfex
-		scan_homepage if self.snow_page
+		scan_homepage if self.snow_page && !self.snow_page.empty?
 	end
 
 	
@@ -203,6 +202,9 @@ class Skiresort < ActiveRecord::Base
 			puts "Scanning #{r.name}"
 			r.scan_snow
 		end
+		if Time.now.hour == 8 && Time.now.min < 40 && Time.now.min  > 29
+			Skiresort.generate_social_media_message()
+		end
 	end
 
 	def self.load_webcams
@@ -216,6 +218,44 @@ class Skiresort < ActiveRecord::Base
 			resort.load_weather
 		end
 	end
+
+	def self.generate_social_media_message
+		freshInfo = []
+		Skiresort.all.each do |resort|
+			if resort.snow_report && resort.snow_report.snow_height && resort.snow_report.snow_height > 9 && resort.snow_report.time > 16.hours.ago
+				freshInfo << OpenStruct.new( 'id' => resort.id, 'snow_height' => resort.snow_report.snow_height )
+			end
+		end
+		if freshInfo
+			messages = Skiresort.getPostMessages(freshInfo)
+			puts messages[:facebook_text]
+			puts messages[:twitter_text]
+
+			post(messages[:facebook_text], messages[:img])
+			$twitter.update(messages[:twitter_text])
+		end
+	end
+
+	def self.getPostMessages(infos)
+		header = "❆❆ Powder Alarm ❆❆\n"
+		footer = "❆❆\nInfos auf http://freizeitticket.info\n#powder_bot_2, #freizeitticket, #pow, #innsbruck"
+		twitterText = ""
+		facebookText = ""
+		img = nil
+		infos.sort_by{|e| e[:snow_height]}.each do |info|
+			resort = Skiresort.find(info[:id])
+			img = "https://freizeitticket.info#{resort.webcams.order(height: :desc).first.img}" if img.nil?
+			twitterText += "❆ #{info[:snow_height]} cm @#{resort.twitter || resort.name.gsub(" ", "_")}\n"
+			facebookText += "❆ #{info[:snow_height]} cm ##{resort.name.gsub(" ", "_")}\n"
+		end
+
+		twitterText = header + twitterText + footer
+		facebookText = header + facebookText + footer
+
+		return OpenStruct.new( 'facebook_text' => facebookText, 'twitter_text' => twitterText[0 .. 139], 'img' => img)
+	end
+
+
 
 	def load_webcam_images
 		self.webcams.each do |webcam| 

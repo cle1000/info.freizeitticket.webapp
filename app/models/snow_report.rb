@@ -5,7 +5,7 @@ class SnowReport < ActiveRecord::Base
 
 	attr_accessor       :text, :current_snow_height
 
-	after_initialize	:set_snow_info
+	after_initialize	:set_snow_info, :adjust_time_homepage
 
 	def set_snow_info
 		if time
@@ -17,6 +17,13 @@ class SnowReport < ActiveRecord::Base
 				@current_snow_height = 0
 				@text = self.time_ago_in_short_words
 			end
+		end
+	end
+
+	def adjust_time_homepage
+		if self.source == "homepage" && self.time.hour != 7 && self.time < Time.zone.now.beginning_of_day #not today
+			self.time = self.time.change({ hour: 7, min: 30 })  
+			self.save!
 		end
 	end
 
@@ -45,6 +52,4 @@ class SnowReport < ActiveRecord::Base
 		text = "#{diff} Tage" if (diff >= 2)
 		text
 	end
-
-	
 end
