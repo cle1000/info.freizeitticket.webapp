@@ -1,7 +1,7 @@
 class Skiresort extends React.Component{
 	constructor(props){
 		super(props)
-		this.state = {active_webcam: 0}
+		this.state = {active_webcam: 0, image_loaded: false}
 	}
 
 	change_webcam() {
@@ -30,9 +30,9 @@ class Skiresort extends React.Component{
 	render(){
 		let resort = this.props.resort
 		let webcam = resort.webcams[this.state.active_webcam]
-		let images = resort.webcams.map(w => <img onClick={()=> window.location = '/area/details?id='+resort.id} className="shadow webcam_image pointer" src={w.img_thumb}/>)
+		let images = resort.webcams.map(w => <img onClick={()=> window.location = '/area/details?id='+resort.id} onLoad={() => this.setState({image_loaded: true})} className="shadow webcam_image pointer" src={w.img_thumb}/>)
 		return (
-			<div ref={(c) => this._container = c} className="skiresort_container">
+			<div ref={(c) => this._container = c} className={"skiresort_container " + (this.state.image_loaded ? '' : 'skiresort_background_loader')}>
 				{images[this.state.active_webcam]}
 				<div className="overlay">
 					{resort.snow && <SnowIcon text={resort.snow.text} type={resort.snow.source} src={resort.snow.link}/>}

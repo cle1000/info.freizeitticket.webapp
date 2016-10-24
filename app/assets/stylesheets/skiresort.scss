@@ -2,10 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.skiresort_background_loader{
+	padding-bottom: 63%;
+	width:100%;
+
+    background-size: 40px 40px;
+	background-image: url("/images/loader.gif");
+	background-repeat: no-repeat;
+    background-position: center;
+    background-color: lightgray;
+}
 
 .skiresort_container{
 	position: relative;
-
+	width:100%;
+	
 	.webcam_image{
 		height: 100%;
 		width: 100%;
@@ -29,7 +40,6 @@
 	.skiresort_name{
 		font-weight: bold;
 		font-size: 15px;
-
 	}
 
 	.webcam_name{
