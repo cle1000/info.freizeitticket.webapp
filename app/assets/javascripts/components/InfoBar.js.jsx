@@ -3,7 +3,7 @@ function InfoBar ( {avalanche_data} ){
 
     return (
     		<div className="col-xs-12">
-    			<Modal alt="Lawinenlagebericht" title="Lawinenlagebericht" className="info-img pull-left" src="/images/info.svg">
+    			<Modal alt="Information" title="Legende" className="info-img pull-left" src="/images/info.svg">
     				<div className="legende">
 						<div> <img src="/images/skiresort_widget/snow.png" alt="Schneehöhe" width="40" />Neuschnee</div>
 	                    <div> <img alt="Lawinenbericht Stufe 1" src="/images/skiresort_widget/lw1.png"/>Lawinenwarnstufe 1 </div>
@@ -19,7 +19,7 @@ function InfoBar ( {avalanche_data} ){
 	                </div>
     			</Modal>
     			{avalanche_data && (
-	    			<Modal alt="Information" title="Legende" className="info-img pull-left" src="/images/avalancheinfo.png">
+	    			<Modal alt="Lawinenlagebericht" title="Lawinenlagebericht" className="info-img pull-left" src="/images/avalancheinfo.png">
 	    				<div className="legende">
 							Von: {avalanche_data.author} am {avalanche_data.time}
 				            <h3>{avalanche_data.highlights}</h3>

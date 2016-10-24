@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161012075545) do
+ActiveRecord::Schema.define(version: 20161023072224) do
 
   create_table "avalanche_regions", force: :cascade do |t|
     t.integer  "avalanche_id"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20161012075545) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.boolean  "wide",           default: false
+    t.boolean  "error"
   end
 
 end

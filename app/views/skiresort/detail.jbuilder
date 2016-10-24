@@ -2,7 +2,7 @@ json.name @resort.name
 json.homepage @resort.homepage
 json.weather @resort.weather
 
-json.webcams @resort.webcams.order(:height) do |webcam|
+json.webcams @resort.webcams.where(error: false).order(:height) do |webcam|
     json.name webcam.name
     json.height webcam.height
     json.src webcam.src

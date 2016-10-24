@@ -5,7 +5,7 @@ class Avalanche < ActiveRecord::Base
 		xml = Nokogiri::Slop(open('https://apps.tirol.gv.at/lwd/produkte/LLBTirol.xml').read.gsub! 'caaml:', '')
 		time =  Time.parse(xml.Bulletin.metaDataProperty.MetaData.dateTimeReport.content)
 		
-		if !Avalanche.all.exists?(time: time )
+		if !Avalanche.all.exists?(time: time)
 			a = Avalanche.new()
 			a.time = time
 			a.author = xml.Bulletin.metaDataProperty.MetaData.comment.content

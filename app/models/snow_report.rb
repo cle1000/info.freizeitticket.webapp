@@ -1,28 +1,24 @@
-include ActionView::Helpers::DateHelper
-
 class SnowReport < ActiveRecord::Base
 	belongs_to 			:skiresort
-
 	attr_accessor       :text, :current_snow_height
-
 	after_initialize	:set_snow_info, :adjust_time_homepage
 
 	def set_snow_info
 		if time
-			if self.time > 12.hours.ago
-				@text = self.powder_alert ? "POW" : "#{self.snow_height} cm"
-				@current_snow_height = 1 if self.powder_alert
-				@current_snow_height = self.snow_height if self.snow_height
+			if time > 12.hours.ago
+				@text = powder_alert ? "POW" : "#{snow_height} cm"
+				@current_snow_height = 1 if powder_alert
+				@current_snow_height = snow_height if snow_height
 			else
 				@current_snow_height = 0
-				@text = self.time_ago_in_short_words
+				@text = time.time_ago_in_short_words
 			end
 		end
 	end
 
 	def adjust_time_homepage
-		if self.source == "homepage" && self.time.hour != 7 && self.time < Time.zone.now.beginning_of_day #not today
-			self.time = self.time.change({ hour: 7, min: 30 })  
+		if source == "homepage" && time.hour != 7 && !time.today?
+			time = time.change({ hour: 7, min: 30 })  
 			self.save!
 		end
 	end
@@ -42,14 +38,5 @@ class SnowReport < ActiveRecord::Base
 		content_text = "gefunden auf Bergfex" if source == "bergfex"
 		content_text
 	end
-
-	def time_ago_in_short_words
-		text = ""
-		diff = ((Time.new - self.time)/3600).round
-		text = "#{diff} h" if (diff < 24)
-		diff = (diff/24.0).round
-		text = "#{diff} Tag" if (diff == 1)
-		text = "#{diff} Tage" if (diff >= 2)
-		text
-	end
+	
 end

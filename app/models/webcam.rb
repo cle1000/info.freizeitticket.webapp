@@ -6,58 +6,68 @@ class Webcam < ActiveRecord::Base
 	
 	after_initialize	:set_webcam_source
 
+	def feratelCam? 
+		feratel_id 
+	end
+
+	def WMSCam? 
+		wms 
+	end
+
+	def panomax? 
+		panomax_id 
+	end
+
 	def set_webcam_source
-		if isFeratelCam
-			@src = "http://webtv.feratel.com/webtv/?cam=#{self.feratel_id.to_s}&t=9&design=v3&c0=1&lg=en&pg=5B5E9E02-B5B4-4A6D-80D1-212DBAE53C39&s=0"
-			self.image = "http://wtvpict.feratel.com/picture/42/#{self.feratel_id.to_s}.jpeg?dcsdesign=WTP_freizeitticket.info.com&design=v3"
-		elsif isPanomax
-			@src = "http://#{self.panomax_area.to_s}.panomax.com/#{self.panomax_webcam.to_s}"
-			self.image = "https://panodata2.panomax.com/cams/#{self.panomax_id.to_s}/recent_optimized.jpg"
-			self.wide = true
-		elsif isWMSCam
-			@src = "http://#{self.wms}.it-wms.com"
-			self.image = "http://#{self.wms}.it-wms.com/panorama1_raw.jpg"
-			self.wide = true
+		if feratelCam?
+			@src = "http://webtv.feratel.com/webtv/?cam=#{feratel_id.to_s}&t=9&design=v3&c0=1&lg=en&pg=5B5E9E02-B5B4-4A6D-80D1-212DBAE53C39&s=0"
+			image = "http://wtvpict.feratel.com/picture/42/#{feratel_id.to_s}.jpeg?dcsdesign=WTP_freizeitticket.info.com&design=v3"
+		elsif panomax?
+			@src = "http://#{panomax_area.to_s}.panomax.com/#{panomax_webcam.to_s}"
+			image = "https://panodata2.panomax.com/cams/#{panomax_id.to_s}/recent_optimized.jpg"
+			wide = true
+		elsif WMSCam?
+			@src = "http://#{wms}.it-wms.com"
+			image = "http://#{wms}.it-wms.com/panorama1_raw.jpg"
+			wide = true
 		else
-			@src = self.image
+			@src = image
 		end
-		@img_thumb = "/images/webcams/thumb/#{self.id.to_s}.jpg"
-		@img ="/images/webcams/image/#{self.id.to_s}.jpg"
+		@img_thumb = "/images/webcams/thumb/#{id.to_s}.jpg"
+		@img ="/images/webcams/image/#{id.to_s}.jpg"
 	end
-
-	def isFeratelCam
-		not self.feratel_id.nil?
-	end
-
-	def isWMSCam
-		not self.wms.nil?
-	end
-
-	def isPanomax
-		not self.panomax_id.nil?
-	end
-
-	def load_image
+	
+	def load
 		begin
-			image = optimize(MiniMagick::Image.open(self.image))
+			img = optimize(MiniMagick::Image.open(image))
 
-			image.format 'jpg'
+			img.format 'jpg'
 
-			if self.wide
-				image.resize '2500x700'
+			if wide
+				img.resize '2500x700'
 			else
-				image.resize '700x700'
+				img.resize '700x700'
 			end
-			image.write 'public/images/webcams/image/'+ self.id.to_s + '.jpg'
+			img.write 'public/images/webcams/image/'+ id.to_s + '.jpg'
 			
-			if self.wide
-				image.resize '2000x230'
-				image.crop '365x230+0+0'
+			if wide
+				img.resize '2000x230'
+				img.crop '365x230+0+0'
 			end
-			image.resize '365x230!'
-			image.write 'public/images/webcams/thumb/'+ self.id.to_s + '.jpg'
+			img.resize '365x230!'
+			img.write 'public/images/webcams/thumb/'+ id.to_s + '.jpg'
+			setError(false)
 		rescue => e
-			Rails.logger.error { "Encountered an error when loading image for #{self.name}:#{e.message} #{e.backtrace.join("\n")}" }
+			Rails.logger.error { "Encountered an error when loading image for #{name}:#{e.message} #{e.backtrace.join("\n")}" }
+			self.setError(true)
+		end
+	end
+
+	def setError(b)
+     	puts self.name
+		if self.error != b
+			self.error = b
+			self.save!
 		end
 	end
 

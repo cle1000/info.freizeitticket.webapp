@@ -1,4 +1,5 @@
 include ApplicationHelper
+include ActionView::Helpers::DateHelper
 
 class SkiresortController < ApplicationController
   def data

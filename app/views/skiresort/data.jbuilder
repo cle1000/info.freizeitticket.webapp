@@ -11,7 +11,7 @@ json.resorts do
         json.link resort.snow_report.link
       end
     end
-    json.webcams resort.webcams.shuffle.take(3) do |webcam|
+    json.webcams resort.webcams.where(error: false).shuffle.take(3) do |webcam|
       json.name webcam.name
       json.height webcam.height
       json.image_name webcam.id
