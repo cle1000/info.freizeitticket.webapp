@@ -1,5 +1,19 @@
-# See http://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-#
-# To ban all spiders from the entire site uncomment the next two lines:
-# User-agent: *
-# Disallow: /
+User-agent: *
+Allow: /
+
+User-agent: SurveyBot
+Disallow: /
+
+User-agent: WebsiteWiki
+Disallow: /
+
+User-agent: ShopWiki
+Disallow: /
+
+User-agent: Jakarta Commons-HttpClient
+Disallow: /
+
+User-Agent: AboutUsBot 
+Disallow: /
+
+Sitemap: http://freizeitticket.info/sitemap.xml.gz

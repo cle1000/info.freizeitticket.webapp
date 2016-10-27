@@ -53,7 +53,7 @@ class DetailView extends React.Component {
 
 					{this.state.active_tab == 'snowreport' && <SnowTimeline snowreports={this.state.data.snowreports}/>}
 
-					{(this.state.active_tab == 'weather' && this.state.data.weather) && <SnowWeather src={this.state.data.weather}/>}
+					{(this.state.active_tab == 'weather' && this.state.data.weather) && <SnowWeather lw={this.state.data.avalanche_level} src={this.state.data.weather}/>}
 
 					<div className="col-xs-12 padding-full">
 						<a className="btn btn-default" href="/">&laquo; Zurück</a> 

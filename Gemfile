@@ -24,6 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "mini_magick"
 
+gem "sitemap_generator"
+
 gem 'whenever', :require => false
 
 gem 'modernizr-rails'
