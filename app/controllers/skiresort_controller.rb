@@ -13,6 +13,8 @@ class SkiresortController < ApplicationController
   
   def detail
   	@resort = Skiresort.find(params[:id])
+    @resort.webcams.each { |w| w }
+
   	@snowreports = Skiresort.find(params[:id]).snow_reports.order(time: :desc).map do |sr|
   		OpenStruct.new(
   			'snow_text' => sr.powder_alert ? "❆ POW POW" : "❆ #{sr.snow_height} cm",

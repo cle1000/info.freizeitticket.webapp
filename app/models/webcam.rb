@@ -31,7 +31,7 @@ class Webcam < ActiveRecord::Base
 			image = "http://#{wms}.it-wms.com/panorama1_raw.jpg"
 			wide = true
 		else
-			@src = image
+			@src = self.image
 		end
 		@img_thumb = "/images/webcams/thumb/#{id.to_s}.jpg"
 		@img ="/images/webcams/image/#{id.to_s}.jpg"
