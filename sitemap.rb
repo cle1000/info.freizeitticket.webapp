@@ -8,4 +8,4 @@ SitemapGenerator::Sitemap.create do
   add '/pages/impressum', :changefreq => 'weekly'
   (1..24).each{|n| add "/area/details?id=#{n}", :changefreq => 'daily'}
 end
-#SitemapGenerator::Sitemap.ping_search_engines # Not needed if you use the rake tasks
+SitemapGenerator::Sitemap.ping_search_engines # Not needed if you use the rake tasks
