@@ -24,5 +24,6 @@ module InfoFreizeitticketRails
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :de
     config.time_zone = 'Europe/Vienna'
+    config.action_dispatch.default_headers.merge!({'X-Frame-Options' => 'ALLOWALL'})
   end
 end
