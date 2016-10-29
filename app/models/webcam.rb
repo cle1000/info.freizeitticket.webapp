@@ -38,8 +38,11 @@ class Webcam < ActiveRecord::Base
 	end
 	
 	def load
+		emptyfile = false;
 		begin
-			img = optimize(MiniMagick::Image.open(image))
+			img = MiniMagick::Image.open(image)
+			emtyfile = true if !img
+			img = optimize(img)
 
 			img.format 'jpg'
 
@@ -59,7 +62,9 @@ class Webcam < ActiveRecord::Base
 			setError(false)
 		rescue => e
 			Rails.logger.error { "Encountered an error when loading image for #{name}:#{e.message} #{e.backtrace.join("\n")}" }
-			self.setError(true)
+			if (emtyfile) 
+				self.setError(true)
+			end
 		end
 	end
 
