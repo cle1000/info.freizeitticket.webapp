@@ -6,7 +6,7 @@ class SkiresortController < ApplicationController
   	@skiresorts = Skiresort.all.each { |r | r }
   	@skiresorts = @skiresorts.sort_by{ |r| cmp(r.snow_report.current_snow_height, false) + cmp(r.snow_report.time, false) + cmp(r.id) }  
     a = Avalanche.order("time").last
-    if a && a.time > 24.hours.ago
+    if a ##&& a.time > 24.hours.ago
       @avalanche_data = a
     end
   end
