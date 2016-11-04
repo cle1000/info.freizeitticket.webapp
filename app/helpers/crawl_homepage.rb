@@ -46,6 +46,7 @@ module CrawlHomepage
 				last.destroy! if last.today?
 			elsif last && best > 0 #there is an active entry for today so we update your entry
 				last.snow_height = best
+				last.time = Time.now
 				last.save!
 			elsif last.nil? && best > 0 #there is no entry but on the homepage there is -> make a new
 				sr = SnowReport.new(time: Time.now, link: snow_page, source: 'homepage', skiresort:self, snow_height: best)
