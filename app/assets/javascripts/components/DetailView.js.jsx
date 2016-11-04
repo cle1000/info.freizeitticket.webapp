@@ -32,7 +32,9 @@ class DetailView extends React.Component {
 				return (
 					<div key={i}  className={(webcam.wide ? 'col-md-12' : 'col-md-6')}>
 						<h4>{webcam.name + " " + webcam.height +"m"}</h4>
-						<img onClick={() => window.open(webcam.src)} className="shadow pointer webcam-detail" src={webcam.img}/>
+						<a target="_blank" href={webcam.src}>							
+							<img lassName="shadow pointer webcam-detail" src={webcam.img}/>
+						</a>
 					</div>
 				)
 			}) 
