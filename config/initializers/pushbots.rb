@@ -1,0 +1,2 @@
+$pushbots_app_id = ENV['FREIZEITTICKET_PUSHBOTS_APP_ID']
+$pushbots_secret = ENV['FREIZEITTICKET_PUSHBOTS_SECRET']
