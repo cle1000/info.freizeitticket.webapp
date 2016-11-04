@@ -21,14 +21,14 @@ class Webcam < ActiveRecord::Base
 	def set_webcam_source
 		if feratelCam?
 			@src = "http://webtv.feratel.com/webtv/?cam=#{feratel_id.to_s}&t=9&design=v3&c0=1&lg=en&pg=5B5E9E02-B5B4-4A6D-80D1-212DBAE53C39&s=0"
-			image = "http://wtvpict.feratel.com/picture/42/#{feratel_id.to_s}.jpeg?dcsdesign=WTP_freizeitticket.info.com&design=v3"
+			self.image = "http://wtvpict.feratel.com/picture/42/#{feratel_id.to_s}.jpeg?dcsdesign=WTP_freizeitticket.info.com&design=v3"
 		elsif panomax?
 			@src = "http://#{panomax_area.to_s}.panomax.com/#{panomax_webcam.to_s}"
-			image = "https://panodata2.panomax.com/cams/#{panomax_id.to_s}/recent_optimized.jpg"
+			self.image = "https://panodata2.panomax.com/cams/#{panomax_id.to_s}/recent_optimized.jpg"
 			wide = true
 		elsif WMSCam?
 			@src = "http://#{wms}.it-wms.com"
-			image = "http://#{wms}.it-wms.com/panorama1_raw.jpg"
+			self.image = "http://#{wms}.it-wms.com/panorama1_raw.jpg"
 			wide = true
 		else
 			@src = self.image
@@ -40,7 +40,7 @@ class Webcam < ActiveRecord::Base
 	def load
 		emptyfile = false;
 		begin
-			img = MiniMagick::Image.open(image)
+			img = MiniMagick::Image.open(self.image)
 			emtyfile = true if !img
 			img = optimize(img)
 
