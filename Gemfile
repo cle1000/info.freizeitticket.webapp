@@ -42,6 +42,7 @@ gem 'twitter'
 
 gem 'chartist-rails'
 
+gem 'seed_dump'
 
 group :production do
   gem 'unicorn'
