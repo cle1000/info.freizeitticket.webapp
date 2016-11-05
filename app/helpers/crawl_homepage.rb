@@ -43,7 +43,7 @@ module CrawlHomepage
 			end
 
 			if last && best == 0 	#there is an entry for today but the snowdate on the homepage was removed, so we delete the entry for the current day
-				last.destroy! if last.today?
+				last.destroy! if last.time.today?
 			elsif last && best > 0 #there is an active entry for today so we update your entry
 				last.snow_height = best
 				last.time = Time.now
