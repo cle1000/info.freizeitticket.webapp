@@ -18,9 +18,9 @@ class Skiresort < ActiveRecord::Base
 	def set_avalanche_level
 		a = Avalanche.order("time").last
 		if !a.nil?
-			#if a.time > 24.hours.ago
+			if a.time > 24.hours.ago
 				@avalanche_level = a.avalanche_regions.where(region: self.avalanche_region).order(danger_rate: :desc).first.danger_rate
-			#end
+			end
 		end
 	end
 
