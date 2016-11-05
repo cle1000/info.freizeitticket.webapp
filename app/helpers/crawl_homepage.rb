@@ -38,7 +38,7 @@ module CrawlHomepage
 
 			last = get_last_snow_report_from_homepage
 
-			if !time > Time.now.beginning_of_day #not today
+			if !(time > Time.now.beginning_of_day) #not today
 				best = 0 # not acatuall snow report available
 			end
 
