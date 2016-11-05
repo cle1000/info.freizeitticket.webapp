@@ -12,4 +12,5 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( pages.js )
 Rails.application.config.assets.precompile += %w( home.js.jsx )
 Rails.application.config.assets.precompile += %w( area.js.jsx )
+Rails.application.config.assets.precompile += %w( errors.js )
 

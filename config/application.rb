@@ -25,5 +25,6 @@ module InfoFreizeitticketRails
     config.i18n.default_locale = :de
     config.time_zone = 'Europe/Vienna'
     config.action_dispatch.default_headers.merge!({'X-Frame-Options' => 'ALLOWALL'})
+    config.exceptions_app = self.routes
   end
 end
