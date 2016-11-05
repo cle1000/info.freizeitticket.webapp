@@ -8,8 +8,4 @@ class Time
 		text = "#{diff} Tage" if (diff >= 2)
 		text
 	end
-
-	def today?
-		self > Time.now.beginning_of_day
-	end
 end
