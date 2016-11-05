@@ -17,7 +17,7 @@ class SnowReport < ActiveRecord::Base
 	end
 
 	def adjust_time_homepage
-		if source == "homepage" && time.hour != 7 && !time.today?
+		if self.source == "homepage" && self.time.hour != 7 && !self.time.today?
 			self.time = self.time.change({ hour: 7, min: 30 })  
 			self.save!
 		end
