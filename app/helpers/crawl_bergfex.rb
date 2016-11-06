@@ -23,8 +23,11 @@ module CrawlBergfex
 				elsif !date.nil?
 					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 				end
-
-				if !SnowReport.all.exists?(time: time, source:"bergfex", skiresort: self)
+				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort: self).where("time >= ?", Time.zone.now.beginning_of_day).first
+				if sr_bergfex_today && sr_bergfex_today.snow_height == snow_height
+					sr_bergfex_today.time = time
+					sr_bergfex_today.save!
+				else
 					sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
 					self.snow_reports << sr
 					self.save!

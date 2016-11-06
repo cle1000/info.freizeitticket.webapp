@@ -47,6 +47,28 @@ class Skiresort < ActiveRecord::Base
 		end
 	end
 
+	def get_push_message
+		last_push_time = self.last_push_time
+		last_push_height = self.last_push_height
+		sr = self.snow_report
+
+		if (!sr.push &&  #dont push again
+			sr.current_snow_height > 14 && ##think about pushing if snowheight is more than 14cm
+				(
+					last_push_time < 12.hours.ago || ##push again if last push is old enought
+					sr.current_snow_height - last_push_height > 10 ##more snow comes
+				)
+			)
+			self.last_push_time = Time.now
+			self.last_push_height = sr.current_snow_height
+			self.save!
+			sr.push = true
+			sr.save!
+			return "#{self.name} #{sr.current_snow_height} cm, "
+		end
+		return ''
+	end
+
 	def self.load_webcams
 		Skiresort.all.each do |resort|
 			resort.load_webcam_images
@@ -76,6 +98,4 @@ class Skiresort < ActiveRecord::Base
 			end
 		end
 	end
-
-
 end

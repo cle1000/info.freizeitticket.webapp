@@ -39,12 +39,13 @@ module CrawlHomepage
 			last = get_last_snow_report_from_homepage
 
 			if !(time > Time.now.beginning_of_day) #not today
-				best = 0 # not acatuall snow report available
+				best = 0 # not actual snow report available
 			end
 
 			if last && best == 0 	#there is an entry for today but the snowdate on the homepage was removed, so we delete the entry for the current day
 				last.destroy! if last.time > Time.now.beginning_of_day #today
 			elsif last && best > 0 #there is an active entry for today so we update your entry
+				last.push = false if ((best - last.snow_height) > 14)
 				last.snow_height = best
 				last.time = Time.now
 				last.save!

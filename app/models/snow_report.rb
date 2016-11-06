@@ -2,6 +2,7 @@ class SnowReport < ActiveRecord::Base
 	belongs_to 			:skiresort
 	attr_accessor       :text, :current_snow_height
 	after_initialize	:set_snow_info, :adjust_time_homepage
+	before_save 		:check_last_snow_report
 
 	def set_snow_info
 		if time
@@ -16,16 +17,21 @@ class SnowReport < ActiveRecord::Base
 		end
 	end
 
-
-
-
-
-
-
 	def adjust_time_homepage
 		if self.source == "homepage" && self.time.hour != 7 && !(self.time > Time.now.beginning_of_day)
 			self.time = self.time.change({ hour: 7, min: 30 })  
 			self.save!
+		end
+	end
+
+	def check_last_snow_report
+		if self.source == 'homepage' && !self.push
+			last = SnowReport.where(source:'homepage', skiresort: self.skiresort).where("time >= ?", 24.hours.ago).first
+			return if !last
+			puts last.snow_height
+			if last.snow_height == self.snow_height
+				self.push = true
+			end
 		end
 	end
 
