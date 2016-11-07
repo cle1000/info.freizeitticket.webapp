@@ -1,41 +1,5 @@
 module CrawlSocialMedia
 
-	def self.generate_social_media_message
-		freshInfo = []
-		Skiresort.all.each do |resort|
-			if resort.snow_report && resort.snow_report.snow_height && resort.snow_report.snow_height > 9 && resort.snow_report.time > 16.hours.ago
-				freshInfo << OpenStruct.new( 'id' => resort.id, 'snow_height' => resort.snow_report.snow_height )
-			end
-		end
-		if freshInfo
-			messages = Skiresort.getPostMessages(freshInfo)
-			puts messages[:facebook_text]
-			puts messages[:twitter_text]
-
-			post(messages[:facebook_text], messages[:img])
-			$twitter.update(messages[:twitter_text])
-		end
-	end
-
-	def self.getPostMessages(infos)
-		header = "❆❆ Powder Alarm ❆❆\n"
-		footer = "❆❆\nInfos auf http://freizeitticket.info\n#powder_bot_2, #freizeitticket, #pow, #innsbruck"
-		twitterText = ""
-		facebookText = ""
-		img = nil
-		infos.sort_by{|e| e[:snow_height]}.each do |info|
-			resort = Skiresort.find(info[:id])
-			img = "https://freizeitticket.info#{resort.webcams.order(height: :desc).first.img}" if img.nil?
-			twitterText += "❆ #{info[:snow_height]} cm @#{resort.twitter || resort.name.gsub(" ", "_")}\n"
-			facebookText += "❆ #{info[:snow_height]} cm ##{resort.name.gsub(" ", "_")}\n"
-		end
-
-		twitterText = header + twitterText + footer
-		facebookText = header + facebookText + footer
-
-		return OpenStruct.new( 'facebook_text' => facebookText, 'twitter_text' => twitterText[0 .. 139], 'img' => img)
-	end
-
 	def getSnowInfo (text)
 		if not text.nil?
 			text = text.downcase
