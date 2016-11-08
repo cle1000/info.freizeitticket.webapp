@@ -1,3 +1,5 @@
+include Twitter
+
 module CrawlSocialMedia
 
 	def getSnowInfo (text)
@@ -49,7 +51,15 @@ module CrawlSocialMedia
 
 	def scan_twitter
 		begin
-		$twitter.user_timeline(twitter).take(5).collect do |tweet|
+		
+		twitter = Twitter::REST::Client.new do |config|
+		  config.consumer_key = ENV['FREIZEITTICKET_TWITTER_CONSUMER_KEY']
+		  config.consumer_secret = ENV['FREIZEITTICKET_TWITTER_CONSUMER_SECRET']
+		  config.access_token = ENV['FREIZEITTICKET_TWITTER_ACCESS_TOKEN']
+		  config.access_token_secret = ENV['FREIZEITTICKET_TWITTER_ACCESS_SECRET']
+		end
+
+		twitter.user_timeline(twitter).take(5).collect do |tweet|
 			snowInfo = getSnowInfo(tweet.text) 
 			if snowInfo
 				if !SnowReport.all.exists?(time: tweet.created_at, source:"twitter", skiresort: self)
