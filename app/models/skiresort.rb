@@ -32,9 +32,9 @@ class Skiresort < ActiveRecord::Base
 
 
 	def scan_snow 
-		scan_twitter if self.twitter
-		scan_facebook if self.facebook
-		scan_bergfex if self.bergfex
+		scan_twitter if self.twitter && !self.twitter.empty?
+		scan_facebook if self.facebook && !self.facebook.empty?
+		scan_bergfex if self.bergfex && !self.bergfex.empty?
 		scan_homepage if self.snow_page && !self.snow_page.empty?
 	end
 
@@ -45,7 +45,7 @@ class Skiresort < ActiveRecord::Base
 		end
 		
 		Skiresort.push 
-
+		Skiresort.generate_social_media_message
 		if Time.now.hour == 8 && Time.now.min < 40 && Time.now.min  > 29
 			Skiresort.generate_social_media_message
 		end

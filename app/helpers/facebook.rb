@@ -12,7 +12,7 @@ module Facebook
 	    http = Net::HTTP.new(uri.host, 443)
 	    http.use_ssl = true
    	    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	    request = Net::HTTP::Post.new(uri.request_uri)  	    
-	    puts http.request(request)
+	    request = Net::HTTP::Post.new(uri.request_uri)  
+	    http.request(request)
 	end
 end
