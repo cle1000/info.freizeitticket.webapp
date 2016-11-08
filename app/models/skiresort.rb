@@ -45,7 +45,6 @@ class Skiresort < ActiveRecord::Base
 		end
 		
 		Skiresort.push 
-		Skiresort.generate_social_media_message
 		if Time.now.hour == 8 && Time.now.min < 40 && Time.now.min  > 29
 			Skiresort.generate_social_media_message
 		end

@@ -1,5 +1,6 @@
 module Facebook
 	def post(message, image)
+		puts image
 		uri = URI.parse("https://graph.facebook.com/v2.5/1720826231536880/feed")
 		args = {
 	      "message" => message,
