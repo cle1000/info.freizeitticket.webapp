@@ -26,7 +26,11 @@ class SnowReport < ActiveRecord::Base
 
 	def check_last_snow_report
 		if self.source == 'homepage' && !self.push
-			last = SnowReport.where(source:'homepage', skiresort: self.skiresort).where("time >= ?", 24.hours.ago).first
+			SnowReport.skip_callback(:initialize, :after, :set_snow_info)
+			SnowReport.skip_callback(:initialize, :after, :adjust_time_homepage)
+			last = SnowReport.where(source:'homepage', skiresort: self.skiresort).where("time >= ?", 24.hours.ago).order(:time).last
+			SnowReport.set_callback(:initialize, :after, :set_snow_info)
+			SnowReport.set_callback(:initialize, :after, :adjust_time_homepage)
 			return if !last
 			puts last.snow_height
 			if last.snow_height == self.snow_height

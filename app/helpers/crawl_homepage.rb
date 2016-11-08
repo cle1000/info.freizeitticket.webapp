@@ -59,6 +59,6 @@ module CrawlHomepage
 	end
 
 	def get_last_snow_report_from_homepage
-		self.snow_reports.where(source: 'homepage').where("time >= ?", Time.zone.now.beginning_of_day).first
+		self.snow_reports.where(source: 'homepage').where("time >= ?", Time.zone.now.beginning_of_day).order(:time).last
 	end
 end	

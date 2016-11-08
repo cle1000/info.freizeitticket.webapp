@@ -3,6 +3,7 @@ include Facebook
 include CrawlSocialMedia
 include CrawlBergfex
 include CrawlHomepage
+include Email
 
 class Skiresort < ActiveRecord::Base
 
