@@ -43,6 +43,7 @@ class Skiresort < ActiveRecord::Base
 			puts "Scanning #{r.name}"
 			r.scan_snow
 		end
+		
 		Skiresort.push 
 
 		if Time.now.hour == 8 && Time.now.min < 40 && Time.now.min  > 29

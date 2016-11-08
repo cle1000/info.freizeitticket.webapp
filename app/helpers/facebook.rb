@@ -9,10 +9,10 @@ module Facebook
 		}
 	    
 	    uri.query = URI.encode_www_form(args)
-	    http = Net::HTTP.new(uri.host, uri.port)
+	    http = Net::HTTP.new(uri.host, 443)
 	    http.use_ssl = true
-	    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-	    request = Net::HTTP::Post.new(uri.request_uri)
-	    http.request(request)
+   	    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+	    request = Net::HTTP::Post.new(uri.request_uri)  	    
+	    puts http.request(request)
 	end
 end
