@@ -131,7 +131,7 @@ class Skiresort < ActiveRecord::Base
 				freshInfo << OpenStruct.new( 'id' => resort.id, 'snow_height' => resort.snow_report.snow_height )
 			end
 		end
-		if freshInfo
+		if !freshInfo.empty?
 			messages = Skiresort.getPostMessages(freshInfo)
 			puts messages[:facebook_text]
 			puts messages[:twitter_text]
