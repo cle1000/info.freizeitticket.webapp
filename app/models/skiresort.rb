@@ -89,10 +89,12 @@ class Skiresort < ActiveRecord::Base
 		pushstring.strip!
 		if pushstring != ''
 			pushstring = pushstring[0, pushstring.length - 1]
+			pushstring = "Powderalarm: #{pushstring}"
+			#send push
+			email(pushstring)
+			#notify_all(pushstring)
 		end
-		pushstring = "Powderalarm: #{pushstring}"
-		#send push
-		notify_all(pushstring)
+		
 	end
 
 	def self.load_webcams
