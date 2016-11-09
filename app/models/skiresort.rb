@@ -5,6 +5,7 @@ include CrawlBergfex
 include CrawlHomepage
 include Twitter
 include Email
+include PushBot
 
 class Skiresort < ActiveRecord::Base
 
@@ -91,7 +92,7 @@ class Skiresort < ActiveRecord::Base
 		end
 		pushstring = "Powderalarm: #{pushstring}"
 		#send push
-		email(pushstring)
+		notify_all(pushstring)
 	end
 
 	def self.load_webcams
