@@ -91,7 +91,7 @@ class Skiresort < ActiveRecord::Base
 			pushstring = pushstring[0, pushstring.length - 1]
 			pushstring = "Powderalarm: #{pushstring}"
 			#send push
-			#email(pushstring)
+			email(pushstring)
 			notify_all(pushstring)
 		end
 		
