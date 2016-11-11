@@ -35,7 +35,11 @@ module CrawlHomepage
 					break
 				end
 			end
-
+			
+			if (time.hour == 0 && time.min == 0)
+				time = time.change({ hour: 7, min: 30 })  
+			end
+			
 			last = get_last_snow_report_from_homepage
 
 			if !(time > Time.now.beginning_of_day) #not today
