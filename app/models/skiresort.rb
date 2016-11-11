@@ -5,7 +5,7 @@ include CrawlBergfex
 include CrawlHomepage
 include Twitter
 include Email
-include PushBot
+include Pushbot
 
 class Skiresort < ActiveRecord::Base
 

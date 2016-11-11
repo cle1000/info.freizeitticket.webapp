@@ -1,4 +1,4 @@
-module PushBot
+module Pushbot
 
   def notify_all(message)
     @toSend = {
