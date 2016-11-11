@@ -39,7 +39,7 @@ module CrawlHomepage
 			if (time.hour == 0 && time.min == 0)
 				time = time.change({ hour: 7, min: 30 })  
 			end
-			
+
 			last = get_last_snow_report_from_homepage
 
 			if !(time > Time.now.beginning_of_day) #not today
@@ -51,7 +51,7 @@ module CrawlHomepage
 			elsif last && best > 0 #there is an active entry for today so we update your entry
 				last.push = false if ((best - last.snow_height) > 14)
 				last.snow_height = best
-				last.time = Time.now
+				last.time = time
 				last.save!
 			elsif last.nil? && best > 0 #there is no entry but on the homepage there is -> make a new
 				sr = SnowReport.new(time: Time.now, link: snow_page, source: 'homepage', skiresort:self, snow_height: best)
