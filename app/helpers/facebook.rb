@@ -13,6 +13,6 @@ module Facebook
 	    http.use_ssl = true
    	    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 	    request = Net::HTTP::Post.new(uri.request_uri)  
-	    http.request(request)
+	    puts http.request(request)
 	end
 end
