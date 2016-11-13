@@ -5,10 +5,9 @@ module Facebook
 		args = {
 	      "message" => message,
 	      "link" => "http://freizeitticket.info",
-	      "picture" => image,
 	      "access_token" => "#{$fb_access_token}"
 		}
-	    
+	    #"picture" => image,
 	    uri.query = URI.encode_www_form(args)
 	    http = Net::HTTP.new(uri.host, 443)
 	    http.use_ssl = true

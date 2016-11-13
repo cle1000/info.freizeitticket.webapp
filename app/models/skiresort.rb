@@ -158,7 +158,7 @@ class Skiresort < ActiveRecord::Base
 		twitterText = ""
 		facebookText = ""
 		img = nil
-		infos.sort_by{|e| e[:snow_height]}.each do |info|
+		infos.sort_by{|e| -1*e[:snow_height]}.each do |info|
 			resort = Skiresort.find(info[:id])
 			img = "https://freizeitticket.info#{resort.webcams.order(height: :desc).first.img}" if img.nil?
 			twitterText += "❆ #{info[:snow_height]} cm @#{resort.twitter || resort.name.gsub(" ", "_")}\n"
