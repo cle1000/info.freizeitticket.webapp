@@ -9,6 +9,8 @@ module CrawlBergfex
 			freshinfo = /(Letzter Schneefall Region<\/dt> <dd>Heute)/.match(html)
 			time = Time.now
 
+			freshinfo = true
+
 			if height && freshinfo
 				snow_height = height[2].to_i
 				heute = /(Heute)(,)( )[0-9][0-9](:)[0-9][0-9]/.match(html)
@@ -23,9 +25,10 @@ module CrawlBergfex
 				elsif !date.nil?
 					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 				end
-				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort: self).where("time >= ?", 12.hours.ago).order(:time).last
+				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort_id: self.id).where("time >= ?", 6.hours.ago).order(:time, :updated_at).last
 				if sr_bergfex_today && sr_bergfex_today.snow_height == snow_height
 					sr_bergfex_today.time = time
+					sr_bergfex_today.snow_height == snow_height
 					sr_bergfex_today.save!
 				else
 					sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
