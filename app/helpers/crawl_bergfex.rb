@@ -9,8 +9,6 @@ module CrawlBergfex
 			freshinfo = /(Letzter Schneefall Region<\/dt> <dd>Heute)/.match(html)
 			time = Time.now
 
-			freshinfo = true
-
 			if height && freshinfo
 				snow_height = height[2].to_i
 				heute = /(Heute)(,)( )[0-9][0-9](:)[0-9][0-9]/.match(html)
