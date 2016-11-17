@@ -24,12 +24,14 @@ module CrawlBergfex
 					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 				end
 				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort_id: self.id).where("time >= ?", 6.hours.ago).order(:time, :updated_at).last
+				
+
+
 				if sr_bergfex_today && sr_bergfex_today.snow_height == snow_height
 					sr_bergfex_today.time = time
-					sr_bergfex_today.snow_height == snow_height
 					sr_bergfex_today.save!
-				else
-					sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
+				elsif time > Time.now.beginning_of_day
+ 					sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
 					self.snow_reports << sr
 					self.save!
 				end
