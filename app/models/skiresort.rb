@@ -46,7 +46,7 @@ class Skiresort < ActiveRecord::Base
 			r.scan_snow
 		end
 		
-		Skiresort.push 
+		#Skiresort.push 
 		if Time.now.hour == 8 && Time.now.min < 40 && Time.now.min  > 29
 			Skiresort.generate_social_media_message
 		end
