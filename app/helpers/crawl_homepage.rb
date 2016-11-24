@@ -4,11 +4,11 @@ module CrawlHomepage
 	def scan_homepage
 		begin
 			snowWords = ["neu", "Neuschnee", "Neuschneemenge", "Neuschnee Berg", "Letzter Schneefall", "new", "Schneehöhe im Skigebiet:"]
-			dateWords = ["Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
+			dateWords = ["Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "fresh snow", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
 			specialChar = [":", "\"", ">", "<", "&gt;", "&lt;", "&nbsp;", /[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]/ ]
 
-			html = open(snow_page, :allow_redirections => :all).read
-		
+			#html = open(snow_page, :allow_redirections => :all).read
+			html = open("http://www.ischgl.com/de/more/schneebericht", :allow_redirections => :all).read
 			best = 0
 			html = html.gsub!(/\s+/, " ").strip
 			snowWords.each do |fresh| 
@@ -33,19 +33,24 @@ module CrawlHomepage
 				if (date.nil?)
 					date = /(#{dateWord}).*?([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9])/.match html
 					shortFormat = !date.nil?
+					time = Time.parse(date[2].to_s)
+					break
 				end
 				date = /(#{dateWord}).*?([A-Z][a-z][a-z] [0-9][0-9]*, [0-9][0-9][0-9][0-9])/.match html if date.nil?
 				if date
+					puts dateWord
+					puts date
 					time = Time.parse(date[2].to_s)
 					time = Time.strptime(date[2], "%d.%m.%y") if shortFormat
 					break
 				end
 			end
 
+
 			if (time.hour == 0 && time.min == 0)
 				time = time.change({ hour: 7, min: 30 })  
 			end
-		
+
 			last = get_last_snow_report_from_homepage
 
 			if !(time > Time.now.beginning_of_day) #not today
