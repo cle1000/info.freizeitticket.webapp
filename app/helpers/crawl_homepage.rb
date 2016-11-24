@@ -7,8 +7,8 @@ module CrawlHomepage
 			dateWords = ["Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "fresh snow", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
 			specialChar = [":", "\"", ">", "<", "&gt;", "&lt;", "&nbsp;", /[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]/ ]
 
-			#html = open(snow_page, :allow_redirections => :all).read
-			html = open("http://www.ischgl.com/de/more/schneebericht", :allow_redirections => :all).read
+			html = open(snow_page, :allow_redirections => :all).read
+			#html = open("http://www.ischgl.com/de/more/schneebericht", :allow_redirections => :all).read
 			best = 0
 			html = html.gsub!(/\s+/, " ").strip
 			snowWords.each do |fresh| 
@@ -38,8 +38,6 @@ module CrawlHomepage
 				end
 				date = /(#{dateWord}).*?([A-Z][a-z][a-z] [0-9][0-9]*, [0-9][0-9][0-9][0-9])/.match html if date.nil?
 				if date
-					puts dateWord
-					puts date
 					time = Time.parse(date[2].to_s)
 					time = Time.strptime(date[2], "%d.%m.%y") if shortFormat
 					break
