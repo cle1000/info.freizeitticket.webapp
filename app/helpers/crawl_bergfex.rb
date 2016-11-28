@@ -23,6 +23,7 @@ module CrawlBergfex
 				elsif !date.nil?
 					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 				end
+
 				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort_id: self.id).where("time >= ?", 6.hours.ago).order(:time, :updated_at).last
 				
 
@@ -30,10 +31,14 @@ module CrawlBergfex
 				if sr_bergfex_today && sr_bergfex_today.snow_height == snow_height
 					sr_bergfex_today.time = time
 					sr_bergfex_today.save!
-				elsif time > Time.now.beginning_of_day
- 					sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
-					self.snow_reports << sr
-					self.save!
+				else
+					entry_exists = SnowReport.all.exists?(time: time, source:"bergfex", skiresort: self, snow_height: snow_height) 
+					puts "Bergfex entry for skiresort: #{name}, source: bergfex, time: #{time}, snow_height: #{snow_height} already exisits" if entry_exists
+					if not entry_exists
+ 						sr = SnowReport.new(source: "bergfex", time: time, snow_height: snow_height, link: "http://www.bergfex.at/#{bergfex}/schneebericht/")
+						self.snow_reports << sr
+						self.save!
+					end
 				end
 			end
 		rescue => e
