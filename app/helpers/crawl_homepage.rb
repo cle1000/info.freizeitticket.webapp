@@ -29,14 +29,14 @@ module CrawlHomepage
 			shortFormat = false;
 
 			dateWords.each do |dateWord|
-				date = /(#{dateWord}).*?([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9])/.match html
+				date = /(#{dateWord}).*?([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9])/.match html #german full
 				if (date.nil?)
-					date = /(#{dateWord}).*?([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9])/.match html
-					shortFormat = !date.nil?
-					time = Time.parse(date[2].to_s)
-					break
+					date = /(#{dateWord}).*?([0-9][0-9]\.[0-9][0-9]\.[0-9][0-9])/.match html #german short
+					if (not date.nil?)
+						shortFormat = true
+					end
 				end
-				date = /(#{dateWord}).*?([A-Z][a-z][a-z] [0-9][0-9]*, [0-9][0-9][0-9][0-9])/.match html if date.nil?
+				date = /(#{dateWord}).*?([A-Z][a-z][a-z] [0-9][0-9]*, [0-9][0-9][0-9][0-9])/.match html if date.nil? # en jan 10, 2016
 				if date
 					time = Time.parse(date[2].to_s)
 					time = Time.strptime(date[2], "%d.%m.%y") if shortFormat
@@ -44,10 +44,10 @@ module CrawlHomepage
 				end
 			end
 
-
 			if (time.hour == 0 && time.min == 0)
 				time = time.change({ hour: 7, min: 30 })  
 			end
+			puts "Date on homepage for #{name} is #{time}"
 
 			last = get_last_snow_report_from_homepage
 
