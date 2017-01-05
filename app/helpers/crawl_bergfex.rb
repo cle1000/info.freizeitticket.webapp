@@ -24,7 +24,7 @@ module CrawlBergfex
 					time = Time.parse(date[0].gsub!(',', Time.now.year.to_s) )	
 				end
 
-				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort_id: self.id).where("time >= ?", 6.hours.ago).order(:time, :updated_at).last
+				sr_bergfex_today = SnowReport.where(source: "bergfex", skiresort_id: self.id).where("time >= ?", 15.hours.ago).order(:time, :updated_at).last
 				
 
 
