@@ -4,6 +4,9 @@ module CrawlHomepage
 	def scan_homepage
 		begin
 			snowWords = ["neu", "Neuschnee", "Neuschneemenge", "Neuschnee Berg", "Letzter Schneefall", "new", "Schneehöhe im Skigebiet:"]
+
+			snowWords = snowWords -= ["Neuschnee"] if self.name == "Bergbahnen Kappl"
+
 			dateWords = ["Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "fresh snow", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
 			specialChar = [":", "\"", ">", "<", "&gt;", "&lt;", "&nbsp;", /[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]/ ]
 			puts snow_page
@@ -23,6 +26,8 @@ module CrawlHomepage
 					end
 				end
 			end
+
+			puts self.name, best, " cm"
 
 			time = Time.now
 
