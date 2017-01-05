@@ -75,6 +75,9 @@ class Skiresort < ActiveRecord::Base
 			sr.push = true
 			sr.save!
 			return "#{self.name} #{sr.snow_height} cm, "
+		else
+			sr.push = true
+			sr.save! 
 		end
 		return ''
 	end
@@ -92,7 +95,7 @@ class Skiresort < ActiveRecord::Base
 			pushstring = "Powderalarm: #{pushstring}"
 			#send push
 			email(pushstring)
-			notify_all(pushstring)
+			#notify_all(pushstring)
 		end
 		
 	end
