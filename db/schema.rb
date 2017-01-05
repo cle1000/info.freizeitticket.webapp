@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20161106074927) do
     t.string   "homepage"
     t.string   "avalanche_region"
     t.string   "weather"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.string   "temperatur"
-    t.datetime "last_push_time"
-    t.integer  "last_push_height"
+    t.datetime "last_push_time",   default: '2015-11-08 07:32:10'
+    t.integer  "last_push_height", default: 0
   end
 
   create_table "snow_reports", force: :cascade do |t|
