@@ -5,7 +5,7 @@ module CrawlHomepage
 		begin
 			snowWords = ["neu", "Neuschnee", "Neuschneemenge", "Neuschnee Berg", "Letzter Schneefall", "new", "Schneehöhe im Skigebiet:"]
 
-			snowWords = snowWords -= ["Neuschnee"] if self.name == "Bergbahnen Kappl"
+			snowWords = snowWords -= ["Neuschnee"] if self.name == "Bergbahnen Kappl" || self.name == "Galtür"
 
 			dateWords = ["Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "fresh snow", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
 			specialChar = [":", "\"", ">", "<", "&gt;", "&lt;", "&nbsp;", /[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]/ ]
