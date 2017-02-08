@@ -7,7 +7,7 @@ module CrawlSocialMedia
 			text = text.downcase
 			snow_words_pos = ["fresh", "powder ", "still", "snowing", "schneit", "new", "neuschnee", "pow", "tiefschnee", "neu", "über nacht", "over night"]
 			snow_words_alert = ["powder alarm", "powderalarm", "pow pow"]
-			snow_words_neg = ["schneehöhe", "snow height", "gestern"]
+			snow_words_neg = ["schneehöhe", "snow height", "gestern", "snow depth"]
 			match = /([0-9][0-9]*)( )*cm/.match(text)
 			if not match.nil?
 				snow_words_neg.each do |n|
