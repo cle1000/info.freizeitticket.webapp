@@ -20,7 +20,7 @@ class Webcam < ActiveRecord::Base
 
 	def set_webcam_source
 		if feratelCam?
-			@src = "http://webtv.feratel.com/webtv/?cam=#{feratel_id.to_s}&t=9&design=v3&c0=1&lg=en&pg=5B5E9E02-B5B4-4A6D-80D1-212DBAE53C39&s=0"
+			@src = "http://webtv.feratel.com/webtv/?cam=#{feratel_id.to_s}&t=1&design=v3&c0=1&lg=en&pg=5B5E9E02-B5B4-4A6D-80D1-212DBAE53C39&s=0"
 			self.image = "http://wtvpict.feratel.com/picture/42/#{feratel_id.to_s}.jpeg?dcsdesign=WTP_freizeitticket.info.com&design=v3"
 		elsif panomax?
 			@src = "http://#{panomax_area.to_s}.panomax.com/#{panomax_webcam.to_s}"
