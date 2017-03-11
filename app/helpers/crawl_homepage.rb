@@ -7,7 +7,7 @@ module CrawlHomepage
 
 			snowWords = snowWords -= ["Neuschnee"] if self.name == "Bergbahnen Kappl" || self.name == "Galtür"
 
-			dateWords = ["Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "fresh snow", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
+			dateWords = ["zuletzt aktuallisiert am", "Datum letzter Schneefall:", "LETZTER SCHNEEFALL", "Letzter Schneefall", "fresh snow", "recent snowfall", "Stand:" , "AKTUELLE DATEN AUS DEM SKIGEBIET - "]
 			specialChar = [":", "\"", ">", "<", "&gt;", "&lt;", "&nbsp;", /[0-9][0-9]\.[0-9][0-9]\.[0-9][0-9][0-9][0-9]/ ]
 			puts snow_page
 			html = open(snow_page, :allow_redirections => :all).read
